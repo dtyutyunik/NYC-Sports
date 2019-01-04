@@ -19,7 +19,7 @@ for each of those will be the data from the json file downloaded from. each of t
 ![ERD](ERD.jpg)
 
 # WireFrames
-
+![WireFrames](wireframe.jpg)
 
 ## MVP
 * Lets a user create a profile with name and profile pic and list
