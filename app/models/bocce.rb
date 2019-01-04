@@ -1,0 +1,2 @@
+class Bocce < ApplicationRecord
+end

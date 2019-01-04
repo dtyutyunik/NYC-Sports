@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  propID: MyString
+  name: MyString
+  location: MyString
+  accessible: MyString
+  lat: 1.5
+  long: 1.5
+  rating: 1.5
+
+two:
+  propID: MyString
+  name: MyString
+  location: MyString
+  accessible: MyString
+  lat: 1.5
+  long: 1.5
+  rating: 1.5
