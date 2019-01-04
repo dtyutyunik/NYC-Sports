@@ -10,19 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_070928) do
+ActiveRecord::Schema.define(version: 2019_01_04_193842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "basketballs", force: :cascade do |t|
+    t.string "propID"
+    t.string "name"
+    t.string "location"
+    t.integer "numCourts"
+    t.string "accessible"
+    t.decimal "lat"
+    t.decimal "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bocces", force: :cascade do |t|
     t.string "propID"
     t.string "name"
     t.string "location"
     t.string "accessible"
-    t.float "lat"
-    t.float "long"
-    t.float "rating"
+    t.decimal "lat"
+    t.decimal "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "crickets", force: :cascade do |t|
+    t.string "propID"
+    t.string "name"
+    t.string "location"
+    t.integer "numFields"
+    t.decimal "lat"
+    t.decimal "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "handballs", force: :cascade do |t|
+    t.string "propID"
+    t.string "name"
+    t.string "location"
+    t.integer "numCourts"
+    t.decimal "lat"
+    t.decimal "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pools", force: :cascade do |t|
+    t.string "propID"
+    t.string "name"
+    t.string "location"
+    t.string "phone"
+    t.string "typeOfPool"
+    t.string "setting"
+    t.string "size"
+    t.string "accessible"
+    t.decimal "lat"
+    t.decimal "long"
+    t.string "recId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tennis", force: :cascade do |t|
+    t.string "propID"
+    t.string "name"
+    t.string "location"
+    t.string "phone"
+    t.integer "courts"
+    t.string "indoor_outdoor"
+    t.string "typeOfCourt"
+    t.string "accessible"
+    t.string "info"
+    t.decimal "lat"
+    t.decimal "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,2 @@
+class Handball < ApplicationRecord
+end

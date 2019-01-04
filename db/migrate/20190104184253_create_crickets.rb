@@ -1,10 +1,10 @@
-class CreateBocces < ActiveRecord::Migration[5.2]
+class CreateCrickets < ActiveRecord::Migration[5.2]
   def change
-    create_table :bocces do |t|
+    create_table :crickets do |t|
       t.string :propID
       t.string :name
       t.string :location
-      t.string :accessible
+      t.integer :numFields
       t.decimal :lat
       t.decimal :long
 

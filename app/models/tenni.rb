@@ -1,0 +1,2 @@
+class Tenni < ApplicationRecord
+end
