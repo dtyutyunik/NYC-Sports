@@ -20,6 +20,7 @@ gem 'puma', '~> 3.11'
  gem 'jwt'
  gem 'json'
  gem 'activerecord-import'
+ gem 'foreman'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
