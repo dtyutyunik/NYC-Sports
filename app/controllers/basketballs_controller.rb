@@ -5,7 +5,7 @@ class BasketballsController < ApplicationController
   def index
     @basketballs = Basketball.all
 
-    render json: {data: @basketballs}
+    render json: @basketballs
   end
 
   # GET /basketballs/1
