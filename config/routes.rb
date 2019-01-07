@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :favorite_lists
+  resources :comments
   resources :users
   resources :basketballs
   resources :tennis

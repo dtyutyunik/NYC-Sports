@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_place: MyString
+  location_name: MyString
+  comments: MyString
+  rating: 1.5
+
+two:
+  name_of_place: MyString
+  location_name: MyString
+  comments: MyString
+  rating: 1.5

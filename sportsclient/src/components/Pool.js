@@ -43,8 +43,14 @@ class Pool extends Component{
 
 async showLocation(name){
   name.preventDefault();
-  const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
-  console.log(data);
+  try{
+    const data=await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${googleClientId}`);
+    console.log(data.data);
+  }
+  catch(e){
+    console.log(e)
+  }
+
 }
 
   handleChange(event) {
