@@ -15,12 +15,13 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
- gem 'rack-cors'
+ gem 'rack-cors', :require => 'rack/cors'
  gem 'knock'
  gem 'jwt'
  gem 'json'
  gem 'activerecord-import'
  gem 'foreman'
+gem 'rest-client'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

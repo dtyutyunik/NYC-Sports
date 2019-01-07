@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
-import {Map, InfoWindow, Marker, getDistanceMatrix,DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, Marker,DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
 
 
@@ -47,8 +47,8 @@ async showLocation(name){
 
   name.preventDefault();
   try{
-
-    const data=await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBena9SRh8132XvVOyCqGzHBOhr_WMa0kU`);
+    const data= await axios.get('/pools/1');
+    // const data=await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=${googleClientId}`);
     console.log(data.data);
   }
   catch(e){
@@ -60,8 +60,15 @@ async showLocation(name){
 async checkdirection(name){
   name.preventDefault();
   try{
-    const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
-    console.log(data.data);
+    const URL= `https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`;
+    const resp = await axios({
+      method: 'get',
+      url: URL
+
+    }); return resp;
+
+    // const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
+    // console.log(data.data);
   }
   catch(e){
     console.log(e)
@@ -143,10 +150,6 @@ getLocation(name){
 
             <p>Name: {e.name}</p>
           <p>Location: {e.location}</p>
-
-
-
-
 
 
 

@@ -10,7 +10,11 @@ class PoolsController < ApplicationController
 
   # GET /pools/1
   def show
-    render json: @pool
+    resp = RestClient.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=AIzaSyCUR73C8B9YkSXexkRRodfVzMuLLB20Ry8')
+    # newresp = JSON.parse(resp)["data"]
+
+    render json: resp
+
   end
 
   # POST /pools
