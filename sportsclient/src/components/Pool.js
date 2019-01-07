@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, Marker, getDistanceMatrix,DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
 
 
@@ -47,7 +47,8 @@ async showLocation(name){
 
   name.preventDefault();
   try{
-    const data=await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.value}&key=${googleClientId}`);
+
+    const data=await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBena9SRh8132XvVOyCqGzHBOhr_WMa0kU`);
     console.log(data.data);
   }
   catch(e){
@@ -94,7 +95,7 @@ getLocation(name){
 
 
   render(){
-    const {posts,latitude, longitude, google,}= this.props;
+    const {posts,origins,destinations,travelMode,distances,latitude, longitude, google}= this.props;
 
     google.maps.DistanceMatrixService(origins,destinations,travelMode,(res,status)=>{
       console.log(distances)
@@ -102,7 +103,7 @@ getLocation(name){
         console.log('ok');
       }
       else{
-        console.error(err,'status:', status)
+        console.error('status:', status)
       }
     })
 
@@ -122,7 +123,7 @@ getLocation(name){
           {this.props.info.map(e=>{
           return  <div key={e.id} className="sportsList">
             <Map className="mapInfo"
-                   google={this.props.google}
+                   google={google}
                    style={style}
                    initialCenter={{
                      lat: e.lat,
@@ -137,11 +138,9 @@ getLocation(name){
              position = {{ lat: e.lat, lng: e.long }}
 
            />
-
-
                  </Map>
                  <div className="sportdetail">
-                   {console.log(this.props.google.maps.getDistanceMatrix(e.name,this.state.value,'walking'))}
+
             <p>Name: {e.name}</p>
           <p>Location: {e.location}</p>
 

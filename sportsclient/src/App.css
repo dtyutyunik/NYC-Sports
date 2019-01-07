@@ -24,7 +24,7 @@ img{
 
 .sportdetail{
   display: flex;
-  border: 2px solid blue;
+  border: 2px solid green;
   /* width: 40%; */
 }
 
@@ -36,4 +36,5 @@ img{
 
 .mapInfo{
   flex: 2;
+  border: 1px solid blue;
 }
