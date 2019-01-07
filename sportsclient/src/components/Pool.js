@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import axios from 'axios';
+
+
 
 const Search = Input.Search;
 const style = {
   width: '25%', height: '25%', position: 'absolute'
 };
+// const distance = require('google-distance-matrix');
+
+
+
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 
 class Pool extends Component{
   constructor(props){
     super(props);
 
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+      address: '',
+    geoDestination: '',
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.buttonClicked=this.buttonClicked.bind(this);
+    this.getLocation=this.getLocation.bind(this);
+    this.showLocation=this.showLocation.bind(this);
+
+
+
+  var origins = ['San Francisco CA'];
+  var destinations = ['New York NY', '41.8337329,-87.7321554'];
+
+
   }
 
+async showLocation(name){
+  name.preventDefault();
+  const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
+  console.log(data);
+}
 
   handleChange(event) {
     this.setState({value: event.target.value});
@@ -31,14 +57,23 @@ class Pool extends Component{
   }
 
 buttonClicked(e){
-  console.log(e.currentTarget.id)
+
 }
+
+getLocation(name){
+  name.preventDefault();
+
+
+}
+
+
+
 
   render(){
     return(
       <div>
         <h1>Pool</h1>
-        <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.showLocation}>
           <label>
             Zip Code:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
