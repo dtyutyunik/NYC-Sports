@@ -23,7 +23,7 @@ class Pool extends Component{
 
     this.state = {
       value: '',
-      address: '',
+      checkValue:'',
     geoDestination: '',
     };
 
@@ -42,9 +42,12 @@ class Pool extends Component{
   }
 
 async showLocation(name){
+
+  console.log(this.state.value);
+
   name.preventDefault();
   try{
-    const data=await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${googleClientId}`);
+    const data=await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.value}&key=${googleClientId}`);
     console.log(data.data);
   }
   catch(e){
@@ -52,6 +55,21 @@ async showLocation(name){
   }
 
 }
+
+async checkdirection(name){
+  name.preventDefault();
+  try{
+    const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
+    console.log(data.data);
+  }
+  catch(e){
+    console.log(e)
+  }
+}
+
+
+
+
 
   handleChange(event) {
     this.setState({value: event.target.value});
@@ -76,6 +94,19 @@ getLocation(name){
 
 
   render(){
+    const {posts,latitude, longitude, google,}= this.props;
+
+    google.maps.DistanceMatrixService(origins,destinations,travelMode,(res,status)=>{
+      console.log(distances)
+      if(status==='ok'){
+        console.log('ok');
+      }
+      else{
+        console.error(err,'status:', status)
+      }
+    })
+
+    // const {posts,latitude,longitude,google}= this.props;
     return(
       <div>
         <h1>Pool</h1>
@@ -110,8 +141,10 @@ getLocation(name){
 
                  </Map>
                  <div className="sportdetail">
+                   {console.log(this.props.google.maps.getDistanceMatrix(e.name,this.state.value,'walking'))}
             <p>Name: {e.name}</p>
           <p>Location: {e.location}</p>
+
 
 
 
