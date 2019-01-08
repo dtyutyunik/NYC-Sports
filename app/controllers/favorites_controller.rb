@@ -8,21 +8,25 @@ class FavoritesController < ApplicationController
     render json: @favorites
   end
 
-  # GET /favorites/1
-  def show
-    render json: @favorite
+  # post /favoriteCustom/userid/sportscolumn/sportsid
+  def create
+    userId = params[:userID]
+    sportsColumn = params[:sportColumn]
+    sportsID = params[:sportID]
+
+    render json: {"userId" => userId, "sportsColumn" => sportsColumn,"sportsID" => sportsID}
   end
 
   # POST /favorites
-  def create
-    @favorite = Favorite.new(favorite_params)
-
-    if @favorite.save
-      render json: @favorite, status: :created, location: @favorite
-    else
-      render json: @favorite.errors, status: :unprocessable_entity
-    end
-  end
+  # def create
+  #   @favorite = Favorite.new(favorite_params)
+  #
+  #   if @favorite.save
+  #     render json: @favorite, status: :created, location: @favorite
+  #   else
+  #     render json: @favorite.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /favorites/1
   def update
