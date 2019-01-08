@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
   resources :favorites
-  resources :favorite_lists
-  resources :comments
   resources :users
-  resources :basketballs
-  resources :tennis
-  resources :pools
-  resources :handballs
-  resources :crickets
-  resources :basket_balls
-  resources :bocces
+  resources :basketballs, :only =>[:show, :index]
+  resources :tennis, :only =>[:show, :index]
+  resources :pools, :only =>[:show, :index]
+  resources :handballs, :only =>[:show, :index]
+  resources :crickets, :only =>[:show, :index]
+  resources :basket_balls, :only =>[:show, :index]
+  resources :bocces, :only =>[:show, :index]
 
   # resources :map do
   #   collection do
