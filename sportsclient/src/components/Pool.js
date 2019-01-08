@@ -6,8 +6,12 @@ import axios from 'axios';
 
 
 const Search = Input.Search;
+
 const style = {
-  width: '25%', height: '25%', position: 'absolute'
+  // className:'mapInfo'
+  width: '20%', height: '25%',
+  position: 'absolute',
+  zindex: '-1',
 };
 // const distance = require('google-distance-matrix');
 
@@ -23,14 +27,16 @@ class Pool extends Component{
 
     this.state = {
       value: '',
-      checkValue:'',
-    geoDestination: '',
+      searchedAddress:'',
+      time: '',
+      distance: '',
+
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.buttonClicked=this.buttonClicked.bind(this);
-    this.getLocation=this.getLocation.bind(this);
+    // this.getLocation=this.getLocation.bind(this);
     this.showLocation=this.showLocation.bind(this);
 
 
@@ -41,15 +47,24 @@ class Pool extends Component{
 
   }
 
-async showLocation(name){
+async showLocation(fromLocation,toLocation){
 
   console.log(this.state.value);
 
-  name.preventDefault();
+  // name.preventDefault();
   try{
-    const data= await axios.get('/pools/1');
+    const data= await axios.get(`/map/${fromLocation}/${toLocation}`);
     // const data=await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=${googleClientId}`);
-    console.log(data.data);
+    const distances= data.data.rows[0].elements[0].distance.text;
+    const times= data.data.rows[0].elements[0].duration.text;
+
+    console.log(data.data.rows[0].elements[0].distance.text);
+    console.log(data.data.rows[0].elements[0].duration.text);
+
+    this.setState({
+      time: times,
+      distance: distances
+    })
   }
   catch(e){
     console.log(e)
@@ -58,17 +73,18 @@ async showLocation(name){
 }
 
 async checkdirection(name){
-  name.preventDefault();
+
+  console.log(name);
   try{
-    const URL= `https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`;
-    const resp = await axios({
-      method: 'get',
-      url: URL
+    const data=await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${googleClientId}`);
+    //this is the address we get
+    const address=data.data.results[0].formatted_address;
+    // console.log(data.data.results[0].formatted_address);
+    this.setState({
+      searchedAddress: address
+    })
 
-    }); return resp;
 
-    // const data=await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=${googleClientId}`);
-    // console.log(data.data);
   }
   catch(e){
     console.log(e)
@@ -84,41 +100,26 @@ async checkdirection(name){
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+    this.checkdirection(this.state.value)
   }
 
 buttonClicked(e){
-
+  console.log(e);
 }
 
-getLocation(name){
-  name.preventDefault();
 
-
-}
 
 
 
 
   render(){
-    const {posts,origins,destinations,travelMode,distances,latitude, longitude, google}= this.props;
+    const {google}= this.props;
 
-    google.maps.DistanceMatrixService(origins,destinations,travelMode,(res,status)=>{
-      console.log(distances)
-      if(status==='ok'){
-        console.log('ok');
-      }
-      else{
-        console.error('status:', status)
-      }
-    })
-
-    // const {posts,latitude,longitude,google}= this.props;
     return(
       <div>
         <h1>Pool</h1>
-      <form onSubmit={this.showLocation}>
+      <form onSubmit={this.handleSubmit}>
           <label>
             Zip Code:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
@@ -128,9 +129,12 @@ getLocation(name){
 
         <div>
           {this.props.info.map(e=>{
-          return  <div key={e.id} className="sportsList">
-            <Map className="mapInfo"
+          return  <div className="sportsItem" key={e.id} >
+            <div className="sportsList">
+            <Map className='mapName'
                    google={google}
+
+
                    style={style}
                    initialCenter={{
                      lat: e.lat,
@@ -146,16 +150,19 @@ getLocation(name){
 
            />
                  </Map>
+</div>
                  <div className="sportdetail">
+                   <button id={e.id} onClick={()=>this.showLocation(this.state.searchedAddress,e.name)}>More Details</button>
+                   <button id={e.id} onClick={()=>this.buttonClicked()}>Reviews</button>
 
-            <p>Name: {e.name}</p>
-          <p>Location: {e.location}</p>
+                 <p>Name: {e.name}</p>
+                  <p>Location: {e.location}</p>
+                <p>Distance: {this.state.distance}</p>
+              <p>Time: {this.state.time}</p>
+            <p>{this.state.searchedAddress}</p>
 
 
 
-        <button id={e.id} onClick={this.buttonClicked}>More Details</button>
-      <button id={e.id} onClick={this.buttonClicked}>Show on Map</button>
-    <button id={e.id} onClick={this.buttonClicked}>Reviews</button>
         </div>
 
           </div>

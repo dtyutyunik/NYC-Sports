@@ -23,18 +23,25 @@ img{
 
 
 .sportdetail{
-  display: flex;
+  position:relative;
   border: 2px solid green;
-  /* width: 40%; */
+
 }
 
 .sportsList{
-  display: flex;
+  width: 40%;
   border: 1px solid red;
-  flex-flow: wrap;
+
 }
 
+.mapName{
+  width: 20%;
+  height: 20%;
+}
+
+
 .mapInfo{
-  flex: 2;
+
+  /* flex: 1; */
   border: 1px solid blue;
 }
