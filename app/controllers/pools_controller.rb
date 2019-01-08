@@ -5,29 +5,17 @@ class PoolsController < ApplicationController
   def index
 
     # @pools = Pool.all
-    @pools=Pool.all.limit(3)
+    @pools=Pool.all.limit(6)
 
     render json: @pools
   end
 
   # GET /pools/1
   def show
-    # info= :params
-
-    resp = RestClient.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=AIzaSyCUR73C8B9YkSXexkRRodfVzMuLLB20Ry8')
-    # newresp = JSON.parse(resp)["data"]
-
-    render json: resp
+    render json: @pool
+    # render json: resp
 
   end
-  #
-  #
-  # def info
-  #     pull= params[:first, :second]
-  #     render json: pull
-  #
-  #
-  # end
 
   # POST /pools
   def create

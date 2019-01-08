@@ -1,61 +1,132 @@
-import React, { Component } from 'react';
-import { Input } from 'antd';
-import {GoogleApiWrapper} from 'google-maps-react';
+import React, {Component} from 'react';
+import {Input} from 'antd';
+import {Map, InfoWindow, Marker, DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
+import axios from 'axios';
 
 const Search = Input.Search;
 
-export default class Bocce extends Component{
-  constructor(props){
+const style = {
+  width: '20%',
+  height: '25%',
+  position: 'absolute',
+  zindex: '-1'
+};
+
+const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+class Bocce extends Component {
+  constructor(props) {
     super(props);
 
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+      searchedAddress: '',
+      time: [],
+      distance: []
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.buttonClicked=this.buttonClicked.bind(this);
+    this.showReviews = this.showReviews.bind(this);
+    this.showLocation = this.showLocation.bind(this);
+
   }
 
+  async showLocation(fromLocation, toLocation) {
+
+    try {
+      const data = await axios.get(`/map/${fromLocation}/${toLocation}`);
+
+      const distances = data.data.rows[0].elements[0].distance.text;
+      const times = data.data.rows[0].elements[0].duration.text;
+
+      this.setState({
+        time: [times, ...this.state.time],
+        distance: [distances, ...this.state.distance]
+      })
+
+    } catch (e) {
+      console.log(e)
+    }
+
+  }
+
+  async checkdirection(name) {
+
+    try {
+      const data = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${googleClientId}`);
+      const address = data.data.results[0].formatted_address;
+
+      this.setState({searchedAddress: address})
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  async handleSubmit(event) {
     event.preventDefault();
+    await this.checkdirection(this.state.value);
+    await this.props.info.map(e => {
+      this.showLocation(this.state.searchedAddress, e.name);
+    })
   }
 
-buttonClicked(e){
-  console.log(e.currentTarget.id)
-}
+  showReviews(e) {
+    console.log('reviws clicked');
+  }
 
-  render(){
-    return(
+  render() {
+    const {google} = this.props;
+
+    return (<div>
+      <h1>Bocce</h1>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Zip Code:
+          <input type="text" value={this.state.value} onChange={this.handleChange}/>
+        </label>
+        <input type="submit" value="Submit"/>
+      </form>
+
       <div>
-        <h1>Bocce</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Zip Code:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        {
+          this.props.info.map((e, index) => {
+            return <div className="sportsItem" key={e.id}>
+              <div className="sportsList">
+                <Map className='mapName' google={google} style={style} initialCenter={{
+                    lat: e.lat,
+                    lng: e.long
+                  }} zoom={15}>
+                  <Marker title={'The marker`s title will appear as a tooltip.'} name={'SOMA'} position={{
+                      lat: e.lat,
+                      lng: e.long
+                    }}/>
+                </Map>
+              </div>
+              <div className="sportdetail">
+                <button id={e.id} onClick={() => this.showReviews()}>Reviews</button>
 
-        <div className="sportsList">
-          {this.props.info.map(e=>{
-          return  <div key={e.id} className="sportdetail">
-            <p>Name: {e.name}</p>
-          <p>Location: {e.location}</p>
-          <p>Lat: {e.lat?e.lat:'N/A'}</p>
-        <p>Long: {e.long?e.long:'N/A'}</p>
-        <button id={e.id} onClick={this.buttonClicked}>More Details</button>
-      <button id={e.id} onClick={this.buttonClicked}>Show on Map</button>
-    <button id={e.id} onClick={this.buttonClicked}>Reviews</button>
+                <p>Name: {e.name}</p>
+                <p>Location: {e.location}</p>
+                <p>Destination Address:{this.state.searchedAddress}</p>
+                <p>Distance from destination: {this.state.distance[index]}</p>
+                <p>Time from destionation: {this.state.time[index]}</p>
+
+              </div>
+
             </div>
 
-          })}
-        </div>
-    </div>
-    );
+          })
+        }
+      </div>
+    </div>);
   }
+
 }
+
+export default GoogleApiWrapper({apiKey: googleClientId})(Bocce)

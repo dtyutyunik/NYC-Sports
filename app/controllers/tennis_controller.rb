@@ -3,7 +3,7 @@ class TennisController < ApplicationController
 
   # GET /tennis
   def index
-    @tennis = Tenni.all
+    @tennis = Tenni.all.limit(6)
 
     render json: @tennis
   end
