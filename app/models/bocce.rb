@@ -1,3 +1,3 @@
 class Bocce < ApplicationRecord
-  has_many :User, through: :Favorite
+  has_many :users, through: :favorites
 end

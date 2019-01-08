@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-
-has_many :Bocce, through: :Favorite
-has_many :Basketball, through: :Favorite
-has_many :Tenni, through: :Favorite
-has_many :Cricket, through: :Favorite
-has_many :Pool, through: :Favorite
-has_many :Bocce, through: :Favorite
+has_many :favorites
+has_many :bocces, through: :favorites
+has_many :basketballs, through: :favorites
+has_many :tennis, through: :favorites
+has_many :crickets, through: :favorites
+has_many :pools, through: :favorites
+has_many :handballs, through: :favorites
 has_secure_password
 
 validates :email, presence: true
