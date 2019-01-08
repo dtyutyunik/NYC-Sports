@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   #   end
   # end
   post 'user_token' => 'user_token#create'
-  post 'favorites/:userID/:sportColumn/:sportID', to: 'favorites#create', as: :favoritePost
+  post 'favorites/', to: 'favorites#create', as: :favoritePost
   get 'map/:first/:second', to: 'map#show', as: :map
   # get 'map' => 'journey#check'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
