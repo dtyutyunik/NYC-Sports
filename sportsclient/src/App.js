@@ -33,7 +33,8 @@ class App extends Component {
       signup: '',
       userlogin: [],
       currentView: '',
-      afterUserLoggedin: []
+      afterUserLoggedin: [],
+      favData: []
 
     }
 
@@ -44,11 +45,69 @@ class App extends Component {
     this.registerChange = this.registerChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.registerUser = this.registerUser.bind(this);
+    this.favoriteCall = this.favoriteCall.bind(this);
+    this.deleteThis = this.deleteThis.bind(this);
+
 
   }
 
   handleView(view) {
     this.setState({currentView: view});
+    console.log('view is', view);
+    if(view==='favorites'){
+      this.favoriteCall();
+    }
+  }
+
+  async favoriteCall(){
+    // http://localhost:3000/favorites/?user_id=6
+    console.log('favorite call called');
+    try{
+      const data= await axios.get(`favorites/?user_id=${this.state.afterUserLoggedin.id}`);
+      console.log(data.data)
+
+      this.setState({
+        favData: data.data
+      })
+
+
+      console.log('favdata is', this.state.favData.basketballs);
+    }
+    catch(e){
+      console.log(e);
+    }
+
+
+
+  }
+
+  async getAllFavs(){
+    // try{
+    //   const data= await axios.get('favorites/');
+    //
+    // }
+  }
+
+  async deleteThis(e, nameOfSport){
+    try{
+      // console.log()
+      let sportId = `${nameOfSport}_id`
+      const data= await axios.get('favorites/');
+      console.log(data.data);
+      const userFavs = data.data.filter(favorite => this.state.afterUserLoggedin.id=== favorite.user_id)
+      const favoriteId = userFavs.filter(favorite => favorite[sportId]===e)[0].id
+      console.log(favoriteId);
+      await axios.delete(`favorites/${favoriteId}`)
+      // console.log(userFavs);
+      // if(e===userFavs[sportId]){
+      //   console.log('correct');
+      // }
+      // userfavs.filter(favorite=> favorite)
+      // await axios.delete(`/favorites/${e}`);
+    }
+    catch(e){
+      console.log(e)
+    }
   }
 
   //register
@@ -137,7 +196,8 @@ class App extends Component {
         display = <Profile info={this.state.afterUserLoggedin}/>;
         break;
         case 'favorites':
-          display = <Favorites />;
+          display = <Favorites favData={this.state.favData}
+          deleteThis={this.deleteThis}/>;
           break;
         case 'LandingPage':
           display = <LandingPage userId={this.state.afterUserLoggedin}/>;
@@ -155,7 +215,7 @@ class App extends Component {
           <button id='profile' onClick={() => this.handleView('profile')}>Profile</button>
         <button id='favorites' onClick={() => this.handleView('favorites')}>Favorites</button>
         {display}
-        
+
 
       </div>
 
