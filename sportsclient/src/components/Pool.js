@@ -27,7 +27,7 @@ class Pool extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.showReviews = this.showReviews.bind(this);
+    this.favoriteIt = this.favoriteIt.bind(this);
     this.showLocation = this.showLocation.bind(this);
 
   }
@@ -76,9 +76,10 @@ class Pool extends Component {
     })
   }
 
-  showReviews(e) {
-    console.log('reviws clicked');
+  async favoriteIt(e) {
+    const data= await axios.post(`/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'pool', 'sportid': e});
   }
+
 
   render() {
     const {google} = this.props;
@@ -109,7 +110,7 @@ class Pool extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <button id={e.id} onClick={() => this.showReviews()}>Favorite it</button>
+              <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite it</button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

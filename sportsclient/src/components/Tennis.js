@@ -76,9 +76,8 @@ class Tennis extends Component {
     })
   }
 
-  favoriteIt(e) {
-    console.log('id is', e.target);
-    console.log('reviws clicked');
+  async favoriteIt(e) {
+    const data= await axios.post(`/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'tenni', 'sportid': e});
   }
 
   render() {
@@ -86,6 +85,8 @@ class Tennis extends Component {
 
     return (<div>
       <h1>Tennis</h1>
+    <h2>User id is {this.props.userId.id}</h2>
+
       <form onSubmit={this.handleSubmit}>
         <label>
           Zip Code:
@@ -110,7 +111,7 @@ class Tennis extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <button id={e.id} name={e.name} onClick={this.favoriteIt}>Favorite it</button>
+                <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite it</button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

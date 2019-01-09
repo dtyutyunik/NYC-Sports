@@ -4,21 +4,25 @@ import {
 } from 'antd';
 
 
-export default function Profile(props){
+export default class Profile extends Component{
+
+  constructor(props){
+    super(props);
+  }
+
+render(){
+
+
   return(
 
 
 <div>
 
-  PRofile page
-
-  {props.data.map(e=>{
-    return (<div>
-      <p>{e.name}</p>
-      <p>{e.profile_pic}</p>
-    <p>{e.sport_type}</p>
-    </div>)
-  })}
+<p>  profile page</p>
+<p>Email:{this.props.info.email}</p>
+<p>Name:{this.props.info.name}</p>
+<p>Pic: {this.props.info.profile_pic}</p>
+<button id='edit'>Edit</button>
 
 
 
@@ -28,4 +32,5 @@ export default function Profile(props){
 
 
   )
+  }
 }

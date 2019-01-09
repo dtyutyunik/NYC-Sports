@@ -7,13 +7,16 @@ import Tennis from './Tennis';
 import Pool from './Pool';
 import Bocce from './Bocce';
 import Cricket from './Cricket';
+import Profile from './Profile';
 
 export default class LandingPage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      sportData: []
+      view: "",
+      sportData: [],
+      id: ''
     }
 
     this.sportPull = this.sportPull.bind(this);
@@ -28,40 +31,48 @@ export default class LandingPage extends Component {
     this.whichSport(sport);
   }
 
+
+  handleView(view) {
+    this.setState({currentView: view});
+  }
+
   whichSport(e) {
     console.log(e);
 
     switch (e) {
       case 'basketballs':
-        this.setState({view: <Basketball info={this.state.sportData}/>})
+        this.setState({view: <Basketball info={this.state.sportData}
+          userId={this.props.userId}
+        />})
         break;
 
       case 'handballs':
-        this.setState({view: <Handball info={this.state.sportData}/>})
+        this.setState({view: <Handball info={this.state.sportData}
+        userId={this.props.userId}/>})
         break;
 
       case 'bocces':
-        this.setState({view: <Bocce info={this.state.sportData}/>})
+        this.setState({view: <Bocce info={this.state.sportData}
+        userId={this.props.userId}/>})
         break;
 
       case 'crickets':
-        this.setState({view: <Cricket info={this.state.sportData}/>})
+        this.setState({view: <Cricket info={this.state.sportData}
+        userId={this.props.userId}/>})
         break;
 
       case 'pools':
-        this.setState({view: <Pool info={this.state.sportData}/>})
+        this.setState({view: <Pool info={this.state.sportData}
+        userId={this.props.userId}/>})
         break;
 
       case 'tennis':
-        this.setState({view: <Tennis info={this.state.sportData}/>});
+        this.setState({view: <Tennis info={this.state.sportData}
+        userId={this.props.userId}/>});
         break;
 
-      case 'LandingPage':
-        this.setState({view: <LandingPage click={this.sportPull}/>});
-        break;
 
       default:
-        this.setState({view: <LandingPage click={this.sportPull}/>});
     }
 
   }
@@ -70,7 +81,10 @@ export default class LandingPage extends Component {
     let {view} = this.state;
     return (
       <div>
+        {console.log(this.props.userId)}
       <div className="sportsListing">
+
+
 
       <div className="sportType" id="basketballs" onClick={this.sportPull}>
         <p>Basketball</p>
