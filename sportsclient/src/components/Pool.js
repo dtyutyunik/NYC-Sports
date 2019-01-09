@@ -109,7 +109,7 @@ class Pool extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <button id={e.id} onClick={() => this.showReviews()}>Reviews</button>
+                <button id={e.id} onClick={() => this.showReviews()}>Favorite it</button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

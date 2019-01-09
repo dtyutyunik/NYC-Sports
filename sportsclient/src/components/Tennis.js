@@ -27,7 +27,7 @@ class Tennis extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.showReviews = this.showReviews.bind(this);
+    this.favoriteIt = this.favoriteIt.bind(this);
     this.showLocation = this.showLocation.bind(this);
 
   }
@@ -76,7 +76,8 @@ class Tennis extends Component {
     })
   }
 
-  showReviews(e) {
+  favoriteIt(e) {
+    console.log('id is', e.target);
     console.log('reviws clicked');
   }
 
@@ -109,7 +110,7 @@ class Tennis extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <button id={e.id} onClick={() => this.showReviews()}>Reviews</button>
+                <button id={e.id} name={e.name} onClick={this.favoriteIt}>Favorite it</button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

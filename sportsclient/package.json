@@ -9,6 +9,7 @@
     "google-distance": "^1.0.1",
     "google-distance-matrix": "^1.1.1",
     "google-maps-react": "^2.0.2",
+    "jwt-decode": "^2.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-geocode": "^0.1.2",
