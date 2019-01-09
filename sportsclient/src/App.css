@@ -3,14 +3,23 @@
 }
 
 
+post :{
+  articles: {
 
+  }
+}
 
 img{
   height: 200px;
   width: 200px;
 }
 
+.sportsListing{
+  display: flex;
+
+}
 .sportType{
+  /* flex: 1; */
   border: 2px solid red;
 
 }

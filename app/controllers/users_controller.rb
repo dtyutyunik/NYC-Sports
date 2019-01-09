@@ -15,8 +15,17 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
 
+    # userPull=User.find_by_name
+    # p params[:user_params]
+    # check=Array(params[:user_params])
+    # p check
+    # check.dig(:user, :email)
+    # render json: @userPull
+
+    @user = User.new(user_params)
+    #
+    #
     if @user.save
       render json: @user, status: :created, location: @user
     else

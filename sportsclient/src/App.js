@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './App.css';
-import Basketball from './components/Basketball';
-import Handball from './components/Handball';
-import Tennis from './components/Tennis';
-import Pool from './components/Pool';
-import Bocce from './components/Bocce';
-import Cricket from './components/Cricket';
+
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
 import {Card} from 'antd';
 import decode from 'jwt-decode';
 
@@ -24,7 +20,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      sportData: [],
+      // sportData: [],
       view: "",
       user:{
         email: '',
@@ -37,13 +33,14 @@ class App extends Component {
       },
       signup: '',
       userlogin: [],
-      register_signin: '',
+      currentView: '',
+      afterUserLoggedin: []
 
     }
 
-    this.sportPull = this.sportPull.bind(this);
-    this.whichSport = this.whichSport.bind(this);
-    this.whichScreen = this.whichScreen.bind(this);
+    // this.sportPull = this.sportPull.bind(this);
+    // this.whichSport = this.whichSport.bind(this);
+
 
 
 
@@ -60,69 +57,55 @@ class App extends Component {
   }
 
 
-  async sportPull(e){
-    const sport= e.currentTarget.id;
-    const info = await axios.get(`${sport}/`);
-    this.setState({sportData: info.data});
-    this.whichSport(sport);
-  }
+  // async sportPull(e){
+  //   const sport= e.currentTarget.id;
+  //   const info = await axios.get(`${sport}/`);
+  //   this.setState({sportData: info.data});
+  //   this.whichSport(sport);
+  // }
 
 
-whichScreen(e){
-  console.log(e.target.id);
-  switch(e.target.id){
-    case 'login': this.setState({register_signin: <Login
-        email={this.state.login.email}
-        password={this.state.login.password}
-        handleChange={this.handleLogin}
-        handleSubmit={this.userSubmit}
-      />}); break;
-      case 'register': this.setState({register_signin:   <Register
-          handleChange={this.registerChange}
-          handleSubmit={this.handleRegister}
-          email={this.state.user.email}
-          password={this.state.user.password}
-          password_confirmation={this.state.user.password_confirmation}/>
-      }); break;
-        default: break;
-  }
+handleView(view){
+  this.setState({currentView: view});
 }
 
-  whichSport(e) {
-    console.log(e);
 
-    switch (e) {
-      case 'basketballs':
-        this.setState({view: <Basketball info={this.state.sportData}/>})
-        break;
 
-        case 'handballs':
-        this.setState({view: <Handball info={this.state.sportData}/>})
-          break;
-
-          case 'bocces':
-            this.setState({view: <Bocce info={this.state.sportData}/>})
-            break;
-
-            case 'crickets':
-            this.setState({view: <Cricket info={this.state.sportData}/>})
-              break;
-
-              case 'pools':
-                this.setState({view: <Pool info={this.state.sportData}/>})
-                break;
-
-                case 'tennis':
-                  this.setState({view: <Tennis info={this.state.sportData}/>});
-                  break;
-
-                  case 'LandingPage':
-              this.setState({view: <LandingPage click={this.sportPull}/>});    break;
-
-      default: this.setState({view: <LandingPage click={this.sportPull}/>});
-    }
-
-  }
+  // whichSport(e) {
+  //   console.log(e);
+  //
+  //   switch (e) {
+  //     case 'basketballs':
+  //       this.setState({view: <Basketball info={this.state.sportData}/>})
+  //       break;
+  //
+  //       case 'handballs':
+  //       this.setState({view: <Handball info={this.state.sportData}/>})
+  //         break;
+  //
+  //         case 'bocces':
+  //           this.setState({view: <Bocce info={this.state.sportData}/>})
+  //           break;
+  //
+  //           case 'crickets':
+  //           this.setState({view: <Cricket info={this.state.sportData}/>})
+  //             break;
+  //
+  //             case 'pools':
+  //               this.setState({view: <Pool info={this.state.sportData}/>})
+  //               break;
+  //
+  //               case 'tennis':
+  //                 this.setState({view: <Tennis info={this.state.sportData}/>});
+  //                 break;
+  //
+  //                 case 'LandingPage':
+  //             this.setState({view: <LandingPage click={this.sportPull}/>});    break;
+  //
+  //     default: this.setState({view: <LandingPage click={this.sportPull}/>});
+  //   }
+  //
+  // }
 
 //register
   registerChange(e){
@@ -140,24 +123,13 @@ whichScreen(e){
   handleRegister(e){
     e.preventDefault();
 
-    console.log('submitted');
-    // console.log(this.state.register);
     this.registerUser(this.state.user);
   }
 
   async registerUser(userInfo){
-    console.log(userInfo);
-    // const data = await axios.get(`/users`);
     const data = await axios.post(`/users`,{user: userInfo});
 
-    //
     console.log(data.data);
-    // temporily storing user
-    this.setState({
-      userlogin: data.data
-    })
-
-    console.log(this.state.userlogin);
 
   }
 
@@ -174,21 +146,33 @@ whichScreen(e){
         }
       }
     ))
+    // console.log('login', this.state.login)
+  }
+
+  userSubmit(e){
+      e.preventDefault();
+      console.log('user submitted');
+      this.checkUser(this.state.login)
   }
 
   async checkUser(login){
 
-    console.log(login);
+    // console.log(login);
     try{
 
       const data=await axios.post(`/user_token`, {auth:login});
-      console.log(data.data);
+      // console.log('jwt data',data.data);
       localStorage.setItem('token', data.data.jwt);
       const token= decode(localStorage.getItem('token'));
-      console.log(token);
+      // console.log('token data' ,token);
+      this.setState({
+        afterUserLoggedin: token
+      })
+
+      this.handleView('LandingPage')
     // console.log(tokenData);
     // localStorage.setItem('token', tokenData.jwt);
-      console.log('you are a user congrats' );
+      // console.log('you are a user congrats' );
     }
     catch(e){
       console.log(e);
@@ -199,58 +183,50 @@ whichScreen(e){
 
   }
 
-userSubmit(e){
-    e.preventDefault();
-    console.log('user submitted');
-    this.checkUser(this.state.login)
-}
 
 
-// view = () => {
-//   switch (this.state.view) {
-//     case 'basketball':
-//     return  < Basketball />
-//
-//     default:
-//
-//   }
-// }
-//
-// setView = (view) => {
-//   this.setState({
-//
-//   })
-// }
 
 
 
   render() {
 
-    let {view} = this.state;
+    let {currentView} = this.state;
     let {register_signin}= this.state;
+    let display;
+    // register_signin=this.whichScreen();
+
+
+      switch(currentView){
+        case 'login': display = <Login
+            email={this.state.login.email}
+            password={this.state.login.password}
+            handleChange={this.handleLogin}
+            handleSubmit={this.userSubmit}/>; break;
+
+          case 'register':
+            display = <Register
+              handleRegisterChange={this.registerChange}
+              handleRegisterSubmit={this.handleRegister}
+              email={this.state.user.email}
+              password={this.state.user.password}
+              password_confirmation={this.state.user.password_confirmation}/>; break;
+          case 'LandingPage':display=<LandingPage click={this.sportPull}/>; break;
+            default: display=<Register
+              handleRegisterChange={this.registerChange}
+              handleRegisterSubmit={this.handleRegister}
+              email={this.state.user.email}
+              password={this.state.user.password}
+              password_confirmation={this.state.user.password_confirmation}/>;
+
+      }
 
     return (<div className="App">
       <div>
         <h1>Welcome TO NYC Sports</h1>
+        <button id='register' onClick={() => this.handleView('register')}>Register</button>
+        <button id='login' onClick={() => this.handleView('login')}>Login</button>
+        {display}
 
-      <button id='register' onClick={this.whichScreen}>Register</button>
-      <button id='login' onClick={this.whichScreen}>Login</button>
-    <button id='LandingPage' onClick={this.whichSport}>sport</button>
-      <LandingPage click={this.sportPull}/>
-      <Register
-          handleChange={this.registerChange}
-          handleSubmit={this.handleRegister}
-          email={this.state.user.email}
-          password={this.state.user.password}
-          password_confirmation={this.state.user.password_confirmation}/>
-
-          <Login
-             email={this.state.login.email}
-             password={this.state.login.password}
-             handleChange={this.handleLogin}
-             handleSubmit={this.userSubmit}
-           />
-      {view}
 
       </div>
 

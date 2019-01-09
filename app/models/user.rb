@@ -8,12 +8,17 @@ has_many :pools, through: :favorites
 has_many :handballs, through: :favorites
 has_secure_password
 
-validates :email, presence: true
+
+validates :email, presence: true, uniqueness: true
+
 
 def to_token_payload
     {
-        sub: id,
-        email: email
+        id: id,
+        email: email,
+        name: name,
+        profile_pic: profile_pic,
+        sport_type: sport_type
     }
 end
 end
