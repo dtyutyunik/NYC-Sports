@@ -30,10 +30,36 @@ img{
 
 }
 
+.favSportAll{
+  border: 2px solid blue;
+  display:flex;
+  /* flex-wrap: wrap; */
+
+}
+
+.favSportList{
+  border: 1px solid red;
+  width:50%;
+  /* flex: 2; */
+}
+
+.favSportList2{
+  border: 1px solid yellow;
+  /* flex: 2; */
+  width:50%;
+}
+
+.favSportList3{
+  border: 1px solid green;
+  width:50%;
+  /* flex: 2; */
+}
+
 
 .sportdetail{
   position:relative;
   border: 2px solid green;
+  flex: 2;
 
 }
 

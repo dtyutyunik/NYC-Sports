@@ -34,7 +34,9 @@ class App extends Component {
       userlogin: [],
       currentView: '',
       afterUserLoggedin: [],
-      favData: []
+
+      favData: [],
+      editIt: true
 
     }
 
@@ -47,6 +49,11 @@ class App extends Component {
     this.registerUser = this.registerUser.bind(this);
     this.favoriteCall = this.favoriteCall.bind(this);
     this.deleteThis = this.deleteThis.bind(this);
+    this.handleEditProfile = this.handleEditProfile.bind(this);
+    this.handleSubmitProfile = this.handleSubmitProfile.bind(this);
+    this.toggleEditView = this.toggleEditView.bind(this);
+
+
 
 
   }
@@ -81,29 +88,19 @@ class App extends Component {
 
   }
 
-  async getAllFavs(){
-    // try{
-    //   const data= await axios.get('favorites/');
-    //
-    // }
-  }
+
 
   async deleteThis(e, nameOfSport){
     try{
-      // console.log()
+
       let sportId = `${nameOfSport}_id`
       const data= await axios.get('favorites/');
-      console.log(data.data);
+      // console.log(data.data);
       const userFavs = data.data.filter(favorite => this.state.afterUserLoggedin.id=== favorite.user_id)
       const favoriteId = userFavs.filter(favorite => favorite[sportId]===e)[0].id
-      console.log(favoriteId);
+      // console.log(favoriteId);
       await axios.delete(`favorites/${favoriteId}`)
-      // console.log(userFavs);
-      // if(e===userFavs[sportId]){
-      //   console.log('correct');
-      // }
-      // userfavs.filter(favorite=> favorite)
-      // await axios.delete(`/favorites/${e}`);
+
     }
     catch(e){
       console.log(e)
@@ -164,6 +161,10 @@ class App extends Component {
       const token = decode(localStorage.getItem('token'));
       // console.log('token data' ,token);
       this.setState({afterUserLoggedin: token})
+      // this.setState({userlogin: this.state.afterUserLoggedin});
+      // console.log(this.state.afterUserLoggedin);
+
+{/* <img alt="mystery person" src="https://cdn3.iconfinder.com/data/icons/glyphicon/64/profil-512.png"/> */}
 
       this.handleView('LandingPage')
       // console.log(tokenData);
@@ -176,6 +177,40 @@ class App extends Component {
     }
 
   }
+
+  toggleEditView(){
+    this.setState({
+      editIt: false
+    })
+  }
+
+handleEditProfile(e){
+  const { name, value }= e.target
+  this.setState(prevState=>({
+    afterUserLoggedin: {
+      ...prevState.afterUserLoggedin,
+      [name]: value
+    }
+  }))
+
+
+}
+async handleSubmitProfile(){
+  console.log('edit profile clicked');
+  this.setState({
+    editIt: true
+  })
+
+  const data={
+    user:{
+      name: this.state.afterUserLoggedin.name,
+      sport_type: this.state.afterUserLoggedin.sport_type,
+      profile_pic: this.state.afterUserLoggedin.profile_pic
+    }
+  }
+  await axios.put(`/users/${this.state.afterUserLoggedin.id}`, data);
+}
+
 
   render() {
 
@@ -193,14 +228,21 @@ class App extends Component {
         display = <Register handleRegisterChange={this.registerChange} handleRegisterSubmit={this.handleRegister} email={this.state.user.email} password={this.state.user.password} password_confirmation={this.state.user.password_confirmation}/>;
         break;
       case 'profile':
-        display = <Profile info={this.state.afterUserLoggedin}/>;
+        display = <Profile info={this.state.afterUserLoggedin}
+        handleEditProfile={this.handleEditProfile}
+        editIt={this.state.editIt}
+        handleSubmitProfile={this.handleSubmitProfile}
+        changeView={this.toggleEditView}
+      />;
         break;
         case 'favorites':
           display = <Favorites favData={this.state.favData}
           deleteThis={this.deleteThis}/>;
           break;
         case 'LandingPage':
-          display = <LandingPage userId={this.state.afterUserLoggedin}/>;
+          display = <LandingPage userId={this.state.afterUserLoggedin}
+
+        />;
           break;
       default:
         display = <Register handleRegisterChange={this.registerChange} handleRegisterSubmit={this.handleRegister} email={this.state.user.email} password={this.state.user.password} password_confirmation={this.state.user.password_confirmation}/>;

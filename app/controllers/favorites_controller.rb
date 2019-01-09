@@ -7,7 +7,14 @@ class FavoritesController < ApplicationController
 #shows all info of speciifc user
 # @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
 
-@user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
+# @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
+
+if params.has_key?(:user_id)
+    @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
+else
+  @user=Favorite.all
+
+end
 
 
     render json: @user
@@ -33,11 +40,12 @@ class FavoritesController < ApplicationController
   end
 
 
-
   # DELETE /favorites/1
   def destroy
-# p params
 
+# p params
+# sportKind="#{params[:sport]}_id"
+  # Favorite.find_by user_id: current_user.id, sportKind => params[:sportid]
 # @favorite=params[:user_id]
 # http://localhost:3000/favorites/?user_id=2&sport=basketball&sportid=11
 
