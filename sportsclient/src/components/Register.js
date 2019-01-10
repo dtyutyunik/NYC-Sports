@@ -7,8 +7,8 @@ import {
 export default function Register(props){
   return(
 
-
-<form onSubmit={props.handleRegisterSubmit}>
+// onSubmit={this.handleSearch}
+<Form className="formDesign" onSubmit={props.handleRegisterSubmit}>
   <h5>Email</h5>
     <Input
       prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -34,10 +34,10 @@ export default function Register(props){
       value={props.password_confirmation}
     />
   <br></br>
-<button type="submit">
-          Register
-        </button>
-  </form>
+<Button type="primary" htmlType="submit"  >
+             Register
+           </Button>
+  </Form>
 
 
 

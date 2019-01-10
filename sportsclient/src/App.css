@@ -1,12 +1,17 @@
 .App {
   text-align: center;
+
+
 }
 
+html{
 
-post :{
-  articles: {
+  background: url('./sport-images/nyc2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
 
-  }
+
 }
 
 img{
@@ -28,6 +33,16 @@ img{
   display: flex;
   flex-wrap:
 
+}
+
+.intro{
+  font-size: 3em;
+  color:white;
+}
+
+.title{
+  font-size: 4em;
+  color:white;
 }
 
 .favSportAll{
@@ -74,6 +89,14 @@ img{
   height: 20%;
 }
 
+.formDesign{
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 40%;
+  margin: 0 auto;
+  color:black;
+  font-size: 1.2em;
+
+}
 
 .mapInfo{
 

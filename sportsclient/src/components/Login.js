@@ -8,7 +8,7 @@ export default function Login(props){
   return(
 
 
-<form onSubmit={props.handleSubmit}>
+<Form className="formDesign" onSubmit={props.handleSubmit}>
   <h5>Email</h5>
     <Input
       prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -26,10 +26,10 @@ export default function Login(props){
       value={props.password}
     />
   <br></br>
-    <button type="submit">
-          Login
-        </button>
-  </form>
+  <Button type="primary" htmlType="submit"  >
+               Log In
+             </Button>
+  </Form>
 
 
 

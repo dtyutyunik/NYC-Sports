@@ -8,6 +8,8 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites.js';
 
+import Typist from 'react-typist';
+
 import {Card} from 'antd';
 import decode from 'jwt-decode';
 
@@ -20,7 +22,6 @@ class App extends Component {
 
     this.state = {
       // sportData: [],
-      view: "",
       user: {
         email: '',
         password: '',
@@ -32,7 +33,7 @@ class App extends Component {
       },
       signup: '',
       userlogin: [],
-      currentView: '',
+      currentView: 'register',
       afterUserLoggedin: [],
 
       favData: [],
@@ -64,6 +65,11 @@ class App extends Component {
     if(view==='favorites'){
       this.favoriteCall();
     }
+    if(view==='signOut'){
+       localStorage.removeItem('token');
+       this.setState({currentView: 'register'})
+    }
+
   }
 
   async favoriteCall(){
@@ -147,32 +153,26 @@ class App extends Component {
   userSubmit(e) {
     e.preventDefault();
     console.log('user submitted');
-    this.checkUser(this.state.login)
+    this.checkUser(this.state.login);
   }
 
   async checkUser(login) {
 
-    // console.log(login);
     try {
 
       const data = await axios.post(`/user_token`, {auth: login});
-      // console.log('jwt data',data.data);
+
       localStorage.setItem('token', data.data.jwt);
       const token = decode(localStorage.getItem('token'));
-      // console.log('token data' ,token);
-      this.setState({afterUserLoggedin: token})
-      // this.setState({userlogin: this.state.afterUserLoggedin});
-      // console.log(this.state.afterUserLoggedin);
 
-{/* <img alt="mystery person" src="https://cdn3.iconfinder.com/data/icons/glyphicon/64/profil-512.png"/> */}
+      this.setState({
+        afterUserLoggedin: token,
+        currentView: 'LandingPage'
+    })
 
-      this.handleView('LandingPage')
-      // console.log(tokenData);
-      // localStorage.setItem('token', tokenData.jwt);
-      // console.log('you are a user congrats' );
     } catch (e) {
       console.log(e);
-      console.warn('not a user');
+      alert('not a user');
 
     }
 
@@ -225,7 +225,11 @@ async handleSubmitProfile(){
         break;
 
       case 'register':
-        display = <Register handleRegisterChange={this.registerChange} handleRegisterSubmit={this.handleRegister} email={this.state.user.email} password={this.state.user.password} password_confirmation={this.state.user.password_confirmation}/>;
+        display = <Register handleRegisterChange={this.registerChange}
+           handleRegisterSubmit={this.handleRegister}
+           email={this.state.user.email}
+           password={this.state.user.password}
+           password_confirmation={this.state.user.password_confirmation}/>;
         break;
       case 'profile':
         display = <Profile info={this.state.afterUserLoggedin}
@@ -251,11 +255,18 @@ async handleSubmitProfile(){
 
     return (<div className="App">
       <div>
-        <h1>Welcome TO NYC Sports</h1>
-        <button id='register' onClick={() => this.handleView('register')}>Register</button>
-        <button id='login' onClick={() => this.handleView('login')}>Login</button>
-          <button id='profile' onClick={() => this.handleView('profile')}>Profile</button>
+        <p className='title'>Welcome TO NYC Sports</p>
+      {this.state.currentView=='register' || this.state.currentView=='login' ?<div>  <Typist className="intro">
+          Sign In or Register to find local public courts near you
+        </Typist>
+      <button id='register' onClick={() => this.handleView('register')}>Register</button>
+    <button id='login' onClick={() => this.handleView('login')}>Login</button></div>:
+
+        <div><button id='profile' onClick={() => this.handleView('profile')}>Profile</button>
+        <button id='LandingPage' onClick={() => this.handleView('LandingPage')}>LandingPage</button>
         <button id='favorites' onClick={() => this.handleView('favorites')}>Favorites</button>
+      <button id='signOut' onClick={() => this.handleView('signOut')}>SignOut</button></div>}
+
         {display}
 
 
