@@ -40,7 +40,7 @@ img{
 .sportsListing{
   margin-top: 10px;
   display: flex;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   flex-wrap: wrap;
   justify-content: space-evenly;
 
@@ -48,7 +48,7 @@ img{
 }
 .sportType{
 
-  border: 2px solid red;
+  /* border: 2px solid red; */
   position: relative;
 
 }
@@ -96,20 +96,20 @@ opacity: .4;
 }
 
 .favSportAll{
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   display:flex;
 
 
 }
 
 .favSportList{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width:50%;
 
 }
 
 .favSportList2{
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 
   width:50%;
 }
@@ -134,18 +134,18 @@ opacity: .4;
 
 .sportdetail{
   position:relative;
-  border: 2px solid green;
+  /* border: 2px solid green; */
   flex: 1;
 }
 
 .sportsList{
-  border: 1px solid red;
+  /* border: 1px solid red; */
 
 }
 
 .mapName{
   flex: 1;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: 100%;
   height: 100%;
   position: relative!important;
@@ -163,5 +163,5 @@ opacity: .4;
 .mapInfo{
 
 
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
