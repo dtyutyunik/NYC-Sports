@@ -1,0 +1,12 @@
+{
+  "name": "Sports-NYC",
+    "license": "MIT",
+    "engines": {
+      "node": "11.2"
+    },
+    "scripts": {
+      "build": "npm --prefix sportsclient install && npm run build --prefix sportsclient",
+      "deploy": "cp -a sportsclient/build/. public/",
+      "heroku-postbuild": "npm run build && npm run deploy"
+    }
+}

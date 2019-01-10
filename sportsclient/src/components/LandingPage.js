@@ -28,7 +28,7 @@ export default class LandingPage extends Component {
 
   async sportPull(e) {
     const sport = e.currentTarget.id;
-    const info = await axios.get(`${sport}/`);
+    const info = await axios.get(`/api/${sport}/`);
     this.setState({sportData: info.data});
     this.whichSport(sport);
   }

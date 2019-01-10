@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  scope '/api' do
+
+
   resources :favorites
   resources :users
   resources :basketballs, :only =>[:show, :index]
@@ -22,4 +25,6 @@ Rails.application.routes.draw do
   get 'map/:first/:second', to: 'map#show', as: :map
   # get 'map' => 'journey#check'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
+
 end
