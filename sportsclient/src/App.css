@@ -1,40 +1,79 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 
 
 }
 
 html{
 
-  background: url('./sport-images/nyc2.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background: url('./sport-images/nyc2.jpg'); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   /* background-position: center; */
-
+background: #F9E4B7;
 
 }
 
+.topBar{
+  /* display: flex; */
+  text-align: center;
+}
+
+
 img{
-  height: 200px;
-  width: 200px;
+  height: 220px;
+  width: 220px;
 }
 
 .profileDisplay{
     background-color: rgba(255, 255, 255, 0.3);
     width: 40%;
     margin: 0 auto;
-    color:black;
+    /* color:black; */
     font-size: 1.2em;
 }
 
 .sportsListing{
+  margin-top: 10px;
   display: flex;
+  border: 1px solid blue;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
 
 }
 .sportType{
-  /* flex: 1; */
-  border: 2px solid red;
 
+  border: 2px solid red;
+  position: relative;
+
+}
+
+.sportType .sportTypeTextContainer{
+  display: none;
+
+
+}
+
+
+.sportText{
+  font-size: 1.5em;
+  font-family: impact;
+
+}
+
+.sportType:hover .sportTypeTextContainer{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sportType:hover img{
+opacity: .4;
 }
 
 .surroundingsports{
@@ -45,69 +84,75 @@ img{
 
 .intro{
   font-size: 3em;
-  color:white;
 }
 
 .title{
   font-size: 4em;
-  color:white;
+
 }
 
 .favSportAll{
   border: 2px solid blue;
   display:flex;
-  /* flex-wrap: wrap; */
+
 
 }
 
 .favSportList{
   border: 1px solid red;
   width:50%;
-  /* flex: 2; */
+
 }
 
 .favSportList2{
   border: 1px solid yellow;
-  /* flex: 2; */
+
   width:50%;
 }
 
 .favSportList3{
   border: 1px solid green;
   width:50%;
-  /* flex: 2; */
+
+}
+
+
+.sportsItem{
+  display: flex;
+  flex-wrap: wrap;
+
 }
 
 
 .sportdetail{
   position:relative;
   border: 2px solid green;
-  flex: 2;
-
+  flex: 1;
 }
 
 .sportsList{
-  width: 40%;
   border: 1px solid red;
 
 }
 
 .mapName{
-  width: 20%;
-  height: 20%;
+  flex: 1;
+  border: 2px solid blue;
+  width: 100%;
+  height: 100%;
 }
 
 .formDesign{
   background-color: rgba(255, 255, 255, 0.3);
   width: 40%;
   margin: 0 auto;
-  color:black;
+
   font-size: 1.2em;
 
 }
 
 .mapInfo{
 
-  /* flex: 1; */
+
   border: 1px solid blue;
 }

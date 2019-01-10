@@ -85,11 +85,9 @@ class Tennis extends Component {
 
     return (<div>
       <h1>Tennis</h1>
-    <h2>User id is {this.props.userId.id}</h2>
-
       <form onSubmit={this.handleSubmit}>
         <label>
-          Zip Code:
+          Enter an address:
           <input type="text" value={this.state.value} onChange={this.handleChange}/>
         </label>
         <input type="submit" value="Submit"/>
@@ -99,7 +97,7 @@ class Tennis extends Component {
         {
           this.props.info.map((e, index) => {
             return <div className="sportsItem" key={e.id}>
-              <div className="sportsList">
+              {/* <div className="sportsList"> */}
                 <Map className='mapName' google={google} style={style} initialCenter={{
                     lat: e.lat,
                     lng: e.long
@@ -109,7 +107,7 @@ class Tennis extends Component {
                       lng: e.long
                     }}/>
                 </Map>
-              </div>
+              {/* </div> */}
               <div className="sportdetail">
                 <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite it</button>
 

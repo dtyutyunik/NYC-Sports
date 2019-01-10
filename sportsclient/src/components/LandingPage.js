@@ -9,6 +9,8 @@ import Bocce from './Bocce';
 import Cricket from './Cricket';
 import Profile from './Profile';
 
+import { Tooltip, Button } from 'antd';
+
 export default class LandingPage extends Component {
 
   constructor(props) {
@@ -81,33 +83,44 @@ export default class LandingPage extends Component {
     let {view} = this.state;
     return (
       <div>
-        {console.log(this.props.userId)}
       <div className="sportsListing">
 
-
-
       <div className="sportType" id="basketballs" onClick={this.sportPull}>
-        <p>Basketball</p>
-        <img src={require('../sport-images/basketball.png')}/>
+
+          <div className="sportTypeTextContainer">
+            <p className="sportText">Basketball</p>
+            </div>
+          <img src={require('../sport-images/basketball.png')}/>
+
       </div>
       <div className="sportType" id="bocces" onClick={this.sportPull}>
-        <p>Bocce</p>
+        <div className="sportTypeTextContainer">
+          <p className="sportText">Bocce</p>
+          </div>
         <img src={require('../sport-images/bocce.png')}/>
       </div>
       <div className="sportType" id="crickets" onClick={this.sportPull}>
-        <p>Cricket</p>
+        <div className="sportTypeTextContainer">
+          <p className="sportText">Cricket</p>
+          </div>
         <img src={require('../sport-images/cricket.png')}/>
       </div>
       <div className="sportType" id="handballs" onClick={this.sportPull}>
-        <p>handball</p>
+        <div className="sportTypeTextContainer">
+          <p className="sportText">Handball</p>
+          </div>
         <img src={require('../sport-images/handball.jpg')}/>
       </div>
       <div className="sportType" id="pools" onClick={this.sportPull}>
-        <p>swimming</p>
+        <div className="sportTypeTextContainer">
+          <p className="sportText">Pool</p>
+          </div>
         <img src={require('../sport-images/swimming.png')}/>
       </div>
       <div className="sportType" id="tennis" onClick={this.sportPull}>
-        <p>tennis</p>
+        <div className="sportTypeTextContainer">
+          <p className="sportText">Tennis</p>
+          </div>
         <img src={require('../sport-images/tennis.png')}/>
       </div>
     </div>

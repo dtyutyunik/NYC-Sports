@@ -5,7 +5,7 @@ class PoolsController < ApplicationController
   def index
 
     # @pools = Pool.all
-    @pools=Pool.all.limit(6)
+    @pools=Pool.all.limit(20)
 
     render json: @pools
   end

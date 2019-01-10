@@ -3,7 +3,7 @@ class HandballsController < ApplicationController
 
   # GET /handballs
   def index
-    @handballs = Handball.all.limit(6)
+    @handballs = Handball.all.limit(20)
 
     render json: @handballs
   end

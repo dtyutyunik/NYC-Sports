@@ -6,4 +6,5 @@ class Favorite < ApplicationRecord
   belongs_to :handball, optional: true
   belongs_to :pool, optional: true
   belongs_to :tenni, optional: true
+  validates_uniqueness_of :user_id, scope: [:basketball_id, :bocce_id, :cricket_id, :handball_id, :pool_id, :tenni_id]
 end

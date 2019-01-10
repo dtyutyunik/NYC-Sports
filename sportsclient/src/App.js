@@ -8,8 +8,13 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites.js';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,Avatar
+  Form, Input, Tooltip, Icon, Cascader, message, Select, Row, Col, Nav, Checkbox, Button, AutoComplete,Avatar
 } from 'antd';
+
+
+
+
+
 
 import Typist from 'react-typist';
 
@@ -40,7 +45,8 @@ class App extends Component {
       afterUserLoggedin: [],
 
       favData: [],
-      editIt: true
+      editIt: true,
+      activeItem: 'register',
 
     }
 
@@ -56,11 +62,13 @@ class App extends Component {
     this.handleEditProfile = this.handleEditProfile.bind(this);
     this.handleSubmitProfile = this.handleSubmitProfile.bind(this);
     this.toggleEditView = this.toggleEditView.bind(this);
-
+    this.handleMenuClick=this.handleMenuClick.bind(this);
 
 
 
   }
+
+handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleView(view) {
     this.setState({currentView: view});
@@ -110,6 +118,8 @@ class App extends Component {
       // console.log(favoriteId);
       await axios.delete(`favorites/${favoriteId}`)
 
+      this.favoriteCall();
+
     }
     catch(e){
       console.log(e)
@@ -134,9 +144,17 @@ class App extends Component {
   }
 
   async registerUser(userInfo) {
-    const data = await axios.post(`/users`, {user: userInfo});
+    try{
+      const data = await axios.post(`/users`, {user: userInfo});
+      message.success("You've registered Successfully");
+      this.setState({currentView: 'login'});
 
-    console.log(data.data);
+    }catch(e){
+      message.error("User already taken");
+    }
+
+
+    // console.log(data.data);
 
   }
 
@@ -175,7 +193,7 @@ class App extends Component {
 
     } catch (e) {
       console.log(e);
-      alert('not a user');
+      message.error('You are not a user');
 
     }
 
@@ -220,7 +238,7 @@ async handleSubmitProfile(){
     let {currentView} = this.state;
     let {register_signin} = this.state;
     let display;
-    // register_signin=this.whichScreen();
+
 
     switch (currentView) {
       case 'login':
@@ -256,24 +274,32 @@ async handleSubmitProfile(){
 
     }
 
-    return (<div className="App">
-      <div>
-        <p className='title'>Welcome TO NYC Sports</p>
-      {this.state.currentView=='register' || this.state.currentView=='login' ?<div>  <Typist className="intro">
+    return (
+      <div className="App">
+
+
+      {this.state.currentView=='register' || this.state.currentView=='login' ?<div className='topBar'>
+        <header>  <Button id='register' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('register')}>Register</Button>
+        <Button id='login' icon="login" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('login')}>Login</Button></header>
+
+          <p className='title'>Welcome TO NYC Sports</p>
+           <Typist className="intro">
           Sign In or Register to find local public courts near you
         </Typist>
-      <button id='register' onClick={() => this.handleView('register')}>Register</button>
-    <Button id='login' icon="login" onClick={() => this.handleView('login')}>Login</Button></div>:
+    </div>:
 
-        <div><Button id='profile' icon="user" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}>Profile</Button>
-        <button id='LandingPage' onClick={() => this.handleView('LandingPage')}>LandingPage</button>
-        <button id='favorites' onClick={() => this.handleView('favorites')}>Favorites</button>
-      <Button icon="logout" id='signOut' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}>SignOut</Button></div>}
+        <div className='topBar'><header> <Button id='profile' icon="user" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}>Profile</Button>
+        <Button id='LandingPage' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('LandingPage')}>Sports</Button>
+        <Button id='favorites' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('favorites')}>Favorites</Button>
+      <Button icon="logout" id='signOut' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}>SignOut</Button></header></div>}
+
+        <div className='topBar'>
 
         {display}
-
-
       </div>
+
+
+
 
     </div>);
   }

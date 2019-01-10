@@ -3,7 +3,7 @@ class BoccesController < ApplicationController
 
   # GET /bocces
   def index
-    @bocces = Bocce.all.limit(6)
+    @bocces = Bocce.all.limit(20)
 
     render json: @bocces
   end

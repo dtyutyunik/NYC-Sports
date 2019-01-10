@@ -8,7 +8,7 @@ Using data from the cityofnewyork.us for locations and informations of all publi
 * ruby on backend coding to read json files and write to db
 * postgresql for db storage
 * javascript for front end coding
-* react native for front end display
+* react.js for front end display
 * ruby on rails for backend
 
 
@@ -22,13 +22,15 @@ for each of those will be the data from the json file downloaded from. each of t
 ![WireFrames](wireframe.jpg)
 
 ## MVP
-* Lets a user create a profile with name and profile pic and list
+* Lets a user create a profile with name and profile pic and to write their favorite sport
 * Have user register
-* Lets user comment once and rate a sport place location
-* render all sports and let user filter based on sports and further order based on zip code
+* Add mapbox to show location in a map
+* render all sports and let user enter address to show distance from the address based on sports
 * Lets user add a spot to their favorite list
 
 
 ## Post MVP
-Add mapbox to show location in a map
+
 Let users see others user who have same interest in sport
+* Lets user comment once and rate a sport place location
+* To order sports by new zip further order based on zip code
