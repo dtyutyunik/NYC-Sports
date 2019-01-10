@@ -87,18 +87,18 @@ class Cricket extends Component {
       <h1>Cricket</h1>
       <form onSubmit={this.handleSubmit}>
         <label>
-          Zip Code:
+          Enter an address:
           <input type="text" value={this.state.value} onChange={this.handleChange}/>
         </label>
         <input type="submit" value="Submit"/>
       </form>
 
-      <div>
+      <div className="sportsContainer">
         {
           this.props.info.map((e, index) => {
             return <div className="sportsItem" key={e.id}>
               <div className="sportsList">
-                <Map className='mapName' google={google} style={style} initialCenter={{
+                <Map className='mapName' google={google}  initialCenter={{
                     lat: e.lat,
                     lng: e.long
                   }} zoom={15}>

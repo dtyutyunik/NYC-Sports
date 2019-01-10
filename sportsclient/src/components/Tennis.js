@@ -5,12 +5,13 @@ import axios from 'axios';
 
 const Search = Input.Search;
 
-const style = {
-  width: '20%',
-  height: '25%',
-  position: 'absolute',
-  zindex: '-1'
-};
+// const style = {}
+// const style2 = {
+//   width: '20%',
+//   height: '25%',
+//   position: 'absolute',
+//   zindex: '-1'
+// };
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -93,12 +94,12 @@ class Tennis extends Component {
         <input type="submit" value="Submit"/>
       </form>
 
-      <div>
+      <div className="sportsContainer">
         {
           this.props.info.map((e, index) => {
             return <div className="sportsItem" key={e.id}>
               {/* <div className="sportsList"> */}
-                <Map className='mapName' google={google} style={style} initialCenter={{
+                <Map className='mapName' google={google} initialCenter={{
                     lat: e.lat,
                     lng: e.long
                   }} zoom={15}>
