@@ -87,7 +87,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
     // http://localhost:3000/favorites/?user_id=6
     console.log('favorite call called');
     try{
-      const data= await axios.get(`favorites/?user_id=${this.state.afterUserLoggedin.id}`);
+      const data= await axios.get(`/api/favorites/?user_id=${this.state.afterUserLoggedin.id}`);
       console.log(data.data)
 
       this.setState({
@@ -111,12 +111,12 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
     try{
 
       let sportId = `${nameOfSport}_id`
-      const data= await axios.get('favorites/');
+      const data= await axios.get('/api/favorites/');
       // console.log(data.data);
       const userFavs = data.data.filter(favorite => this.state.afterUserLoggedin.id=== favorite.user_id)
       const favoriteId = userFavs.filter(favorite => favorite[sportId]===e)[0].id
       // console.log(favoriteId);
-      await axios.delete(`favorites/${favoriteId}`)
+      await axios.delete(`/api/favorites/${favoriteId}`)
 
       this.favoriteCall();
 
@@ -145,7 +145,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   async registerUser(userInfo) {
     try{
-      const data = await axios.post(`/users`, {user: userInfo});
+      const data = await axios.post(`/api/users`, {user: userInfo});
       message.success("You've registered Successfully");
       this.setState({currentView: 'login'});
 
@@ -181,7 +181,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
     try {
 
-      const data = await axios.post(`/user_token`, {auth: login});
+      const data = await axios.post(`/api/user_token`, {auth: login});
 
       localStorage.setItem('token', data.data.jwt);
       const token = decode(localStorage.getItem('token'));
@@ -229,7 +229,7 @@ async handleSubmitProfile(){
       profile_pic: this.state.afterUserLoggedin.profile_pic
     }
   }
-  await axios.put(`/users/${this.state.afterUserLoggedin.id}`, data);
+  await axios.put(`/api/users/${this.state.afterUserLoggedin.id}`, data);
 }
 
 

@@ -35,7 +35,7 @@ class Pool extends Component {
   async showLocation(fromLocation, toLocation) {
 
     try {
-      const data = await axios.get(`/map/${fromLocation}/${toLocation}`);
+      const data = await axios.get(`/api/map/${fromLocation}/${toLocation}`);
 
       const distances = data.data.rows[0].elements[0].distance.text;
       const times = data.data.rows[0].elements[0].duration.text;
@@ -77,7 +77,7 @@ class Pool extends Component {
   }
 
   async favoriteIt(e) {
-    const data= await axios.post(`/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'pool', 'sportid': e});
+    const data= await axios.post(`/api/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'pool', 'sportid': e});
   }
 
 
