@@ -19,6 +19,14 @@ img{
   width: 200px;
 }
 
+.profileDisplay{
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 40%;
+    margin: 0 auto;
+    color:black;
+    font-size: 1.2em;
+}
+
 .sportsListing{
   display: flex;
 

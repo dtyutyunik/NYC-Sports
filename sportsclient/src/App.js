@@ -7,6 +7,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites.js';
+import {
+  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,Avatar
+} from 'antd';
 
 import Typist from 'react-typist';
 
@@ -260,12 +263,12 @@ async handleSubmitProfile(){
           Sign In or Register to find local public courts near you
         </Typist>
       <button id='register' onClick={() => this.handleView('register')}>Register</button>
-    <button id='login' onClick={() => this.handleView('login')}>Login</button></div>:
+    <Button id='login' icon="login" onClick={() => this.handleView('login')}>Login</Button></div>:
 
-        <div><button id='profile' onClick={() => this.handleView('profile')}>Profile</button>
+        <div><Button id='profile' icon="user" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}>Profile</Button>
         <button id='LandingPage' onClick={() => this.handleView('LandingPage')}>LandingPage</button>
         <button id='favorites' onClick={() => this.handleView('favorites')}>Favorites</button>
-      <button id='signOut' onClick={() => this.handleView('signOut')}>SignOut</button></div>}
+      <Button icon="logout" id='signOut' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}>SignOut</Button></div>}
 
         {display}
 
