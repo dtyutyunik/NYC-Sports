@@ -54,6 +54,7 @@ class Basketball extends Component {
   async checkdirection(name) {
 
     try {
+      console.log(googleClientId);
       const data = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${googleClientId}`);
 
       console.log(data.data);
