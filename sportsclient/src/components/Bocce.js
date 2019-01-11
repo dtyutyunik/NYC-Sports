@@ -46,7 +46,7 @@ class Bocce extends Component {
       })
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
 
   }
@@ -60,7 +60,7 @@ class Bocce extends Component {
       this.setState({searchedAddress: address})
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   }
 

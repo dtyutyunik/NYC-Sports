@@ -46,7 +46,7 @@ class Basketball extends Component {
       })
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
 
   }
@@ -54,16 +54,16 @@ class Basketball extends Component {
   async checkdirection(name) {
 
     try {
-      console.log(googleClientId);
+      // console.log(googleClientId);
       const data = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${googleClientId}`);
 
-      console.log(data.data);
+      // console.log(data.data);
       const address = data.data.results[0].formatted_address;
 
       this.setState({searchedAddress: address})
 
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   }
 

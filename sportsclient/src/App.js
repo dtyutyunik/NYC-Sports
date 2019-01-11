@@ -72,7 +72,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleView(view) {
     this.setState({currentView: view});
-    console.log('view is', view);
+    // console.log('view is', view);
     if(view==='favorites'){
       this.favoriteCall();
     }
@@ -85,20 +85,20 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   async favoriteCall(){
     // http://localhost:3000/favorites/?user_id=6
-    console.log('favorite call called');
+    // console.log('favorite call called');
     try{
       const data= await axios.get(`/api/favorites/?user_id=${this.state.afterUserLoggedin.id}`);
-      console.log(data.data)
+      // console.log(data.data)
 
       this.setState({
         favData: data.data
       })
 
 
-      console.log('favdata is', this.state.favData.basketballs);
+      // console.log('favdata is', this.state.favData.basketballs);
     }
     catch(e){
-      console.log(e);
+      // console.log(e);
     }
 
 
@@ -122,7 +122,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
     }
     catch(e){
-      console.log(e)
+      // console.log(e)
     }
   }
 
@@ -173,7 +173,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   userSubmit(e) {
     e.preventDefault();
-    console.log('user submitted');
+    // console.log('user submitted');
     this.checkUser(this.state.login);
   }
 
@@ -192,8 +192,8 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
     })
 
     } catch (e) {
-      console.log(e);
-      message.error('You are not a user');
+      // console.log(e);
+      message.error('Incorrect credentials');
 
     }
 
@@ -217,7 +217,7 @@ handleEditProfile(e){
 
 }
 async handleSubmitProfile(){
-  console.log('edit profile clicked');
+  // console.log('edit profile clicked');
   this.setState({
     editIt: true
   })
