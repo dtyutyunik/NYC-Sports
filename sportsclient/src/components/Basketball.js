@@ -55,6 +55,8 @@ class Basketball extends Component {
 
     try {
       const data = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${googleClientId}`);
+
+      console.log(data.data);
       const address = data.data.results[0].formatted_address;
 
       this.setState({searchedAddress: address})
