@@ -22,14 +22,15 @@ class Basketball extends Component {
       value: '',
       searchedAddress: '',
       time: [],
-      distance: []
+      distance: [],
+      isItFavorite: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.favoriteIt = this.favoriteIt.bind(this);
     this.showLocation = this.showLocation.bind(this);
-
+    this.favoriteCall = this.favoriteCall.bind(this);
   }
 
   async showLocation(fromLocation, toLocation) {
@@ -81,7 +82,31 @@ class Basketball extends Component {
 
   async favoriteIt(e) {
     const data= await axios.post(`/api/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'basketball', 'sportid': e});
-  }
+    this.favoriteCall();
+    }
+
+    componentDidMount(){
+      this.favoriteCall();
+    }
+
+
+
+
+    async favoriteCall(){
+    try{
+      const data= await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
+
+      this.setState({
+        isItFavorite: data.data.basketballs
+      })
+
+    }
+    catch(e){
+      // console.log(e);
+    }
+
+    }
+
 
   render() {
     const {google} = this.props;
@@ -112,7 +137,9 @@ class Basketball extends Component {
                 </Map>
               {/* </div> */}
               <div className="sportdetail">
-                <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite it</button>
+                <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
+                  <button disabled>Part of Favorite List</button>:
+                  <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</button> }</div>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

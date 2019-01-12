@@ -17,11 +17,16 @@ background: #F9E4B7;
 .topBar{
   /* display: flex; */
   text-align: center;
+  margin-bottom: 5%;
 }
 
 .sportsContainer{
   display:grid;
   grid-template-columns: repeat(2,1fr);
+}
+
+.formedit{
+  border: 1px solid blue;
 }
 
 img{

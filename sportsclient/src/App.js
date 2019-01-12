@@ -63,6 +63,8 @@ class App extends Component {
     this.handleSubmitProfile = this.handleSubmitProfile.bind(this);
     this.toggleEditView = this.toggleEditView.bind(this);
     this.handleMenuClick=this.handleMenuClick.bind(this);
+      this.handleSportProfile = this.handleSportProfile.bind(this);
+
 
 
 
@@ -205,23 +207,38 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
     })
   }
 
+  handleSportProfile(e){
+
+    // console.log(name);
+    console.log(e);
+    const newUser = this.state.afterUserLoggedin;
+    newUser.sport_type = e;
+    this.setState({
+      afterUserLoggedin: newUser
+    })
+    // console.log(checked);
+  }
+
 handleEditProfile(e){
   const { name, value }= e.target
-  this.setState(prevState=>({
-    afterUserLoggedin: {
-      ...prevState.afterUserLoggedin,
-      [name]: value
-    }
-  }))
 
+    this.setState(prevState=>({
+      afterUserLoggedin: {
+        ...prevState.afterUserLoggedin,
+        [name]: value
+      }
+    }))
 
 }
+
 async handleSubmitProfile(){
   // console.log('edit profile clicked');
+  const newUser = this.state.afterUserLoggedin
+  newUser.sport_type = this.state.afterUserLoggedin.sport_type.join(" ");
   this.setState({
-    editIt: true
+    editIt: true,
+    afterUserLoggedin: newUser
   })
-
   const data={
     user:{
       name: this.state.afterUserLoggedin.name,
@@ -258,6 +275,7 @@ async handleSubmitProfile(){
         editIt={this.state.editIt}
         handleSubmitProfile={this.handleSubmitProfile}
         changeView={this.toggleEditView}
+        changeSport={this.handleSportProfile}
       />;
         break;
         case 'favorites':

@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon, Image,Dropdown } from 'semantic-ui-react';
 import {
-  Drawer, Modal, Form, Button, Col, Row, Input, Select, DatePicker,
+  Form, Select, InputNumber, Switch, Radio,
+  Slider, Button, Upload, Rate, Checkbox,
+  Row, Col, Input,
 } from 'antd';
+
+
 
 const { Option } = Select;
 
-export default class Profile extends Component{
+export default class ProfileInfo extends Component{
 
   constructor(props){
     super(props);
@@ -15,7 +19,9 @@ export default class Profile extends Component{
     this.state = {
     loading: false,
     visible: false,
+    sports: [],
   }
+
 
   }
 
@@ -23,8 +29,22 @@ export default class Profile extends Component{
 
 render(){
 
+const sportData=[
 
-// const { visible, loading } = this.state;
+ { label: 'Bocce', value: 'Bocce', name: 'Bocce'},
+ { label: 'Basketball', value: 'Basketball', name: 'Basketball'},
+ { label: 'Cricket', value: 'Cricket', name: 'Cricket'},
+ { label: 'Handball', value: 'Handball', name: 'Handball'},
+ { label: 'Swimming', value: 'Swimming', name: 'Swimming'},
+ { label: 'Tennis', value: 'Tennis', name: 'Tennis'}
+];
+
+const CheckboxGroup = Checkbox.Group;
+
+const formItemLayout = {
+   labelCol: { span: 6 },
+   wrapperCol: { span: 14 },
+ };
 
   return(
 
@@ -33,11 +53,11 @@ render(){
   {this.props.editIt?
 <div>
   <Card className='profileDisplay'>
-    {this.props.info.profile_pic?<Image alt="Profile Pic" src={this.props.info.profile_pic} />:<Image alt="Profile Pic" src='https://media.tenor.com/images/f9c584640df7b73c76c8a4325cfc47da/tenor.gif' />}
+    {this.props.info.profile_pic?<Image alt="Profile Pic" src={this.props.info.profile_pic} />:<Image alt="Profile Pic" src='https://img.itch.zone/aW1hZ2UvMjE2NjcxLzEwMjIzNTIucG5n/original/ppV04I.png' />}
    <Card.Content>
      <Card.Header>Name: {this.props.info.name}</Card.Header>
-   <Card.Description>Email:{this.props.info.email} </Card.Description>
- <Card.Description>sport_type: {this.props.info.sport_type} </Card.Description>
+   <Card.Description>Email: {this.props.info.email} </Card.Description>
+ <Card.Description>Sports: {this.props.info.sport_type} </Card.Description>
 <button id='edit' onClick={this.props.changeView}>Edit</button>
  </Card.Content>
 </Card>
@@ -45,34 +65,42 @@ render(){
  :
 
  <div>
-    <form onSubmit={this.props.handleSubmitProfile}>
-      <input type='text'
-     name='name'
-        placeholder='name'
-        onChange={this.props.handleEditProfile}
-        value={this.props.info.name}
-        >
-      </input>
-     <input type='text'
-        placeholder='profile_pic'
-        name='profile_pic'
-        onChange={this.props.handleEditProfile}
-        value={this.props.info.profile_pic}
-        >
-      </input>
-      <input type='text'
-       placeholder='sport_type'
-        name='sport_type'
-        onChange={this.props.handleEditProfile}
-       value={this.props.info.sport_type}
-        >
-      </input>
+   <Form className="formDesign" onSubmit={this.props.handleSubmitProfile}>
+     <h5>Name</h5>
+     <Input type='text'
+        style={{color: "rgba(0,0,0,.25)" }}
+        name='name'
+       placeholder='name'
+       onChange={this.props.handleEditProfile}
+       value={this.props.info.name}
+       >
+     </Input>
+     <h5>Profile Pic URL</h5>
+    <Input.TextArea
+      rows={4}
+      cols={20}
+      // style={{color: "rgba(0,0,0,.25)" }}
+       placeholder='profile_pic'
+       name='profile_pic'
+       onChange={this.props.handleEditProfile}
+       value={this.props.info.profile_pic}
+       >
+     </Input.TextArea>
 
-    <button type='submit'>Submit</button>
-    </form>
+      <CheckboxGroup options={sportData} onChange={this.props.changeSport} />
+
+
+   <br></br>
+     <Button type="primary" htmlType="submit"  >
+                  Submit
+                </Button>
+   </Form>
+
+
 
 </div>
 }
+
 
 
 

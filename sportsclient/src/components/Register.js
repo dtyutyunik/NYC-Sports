@@ -19,6 +19,7 @@ export default function Register(props){
     />
   <h5>Password</h5>
     <Input
+      type="password"
       prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
       placeholder="enter pw"
       onChange={props.handleRegisterChange}
@@ -27,6 +28,7 @@ export default function Register(props){
     />
   <h5>Password Confirmation</h5>
     <Input
+      type="password"
       prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
       placeholder="renenter pw"
       onChange={props.handleRegisterChange}
