@@ -11,7 +11,7 @@ export default function Register(props){
 <Form className="formDesign" onSubmit={props.handleRegisterSubmit}>
   <h5>Email</h5>
     <Input
-      prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+
       placeholder="input email"
       onChange={props.handleRegisterChange}
       name='email'
@@ -20,7 +20,7 @@ export default function Register(props){
   <h5>Password</h5>
     <Input
       type="password"
-      prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+
       placeholder="enter pw"
       onChange={props.handleRegisterChange}
       name='password'
@@ -29,13 +29,13 @@ export default function Register(props){
   <h5>Password Confirmation</h5>
     <Input
       type="password"
-      prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+    
       placeholder="renenter pw"
       onChange={props.handleRegisterChange}
       name='password_confirmation'
       value={props.password_confirmation}
     />
-  <br></br>
+
 <Button type="primary" htmlType="submit"  >
              Register
            </Button>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 export default function Favorites(props) {
   return (<div>
-    Favorites page
     <div className="favSportAll">
       <div className="favSportList">
         <p>BasketBall</p>
@@ -31,7 +30,7 @@ export default function Favorites(props) {
         }
       </div>
 
-      <div className="favSportList2">
+      <div className="favSportList">
         <p>crickets</p>
         {
           props.favData.crickets && props.favData.crickets.map(i => {
@@ -44,7 +43,7 @@ export default function Favorites(props) {
         }
       </div>
 
-      <div className="favSportList2">
+      <div className="favSportList">
         <p>handballs</p>
         {
           props.favData.handballs && props.favData.handballs.map(i => {
@@ -57,7 +56,7 @@ export default function Favorites(props) {
         }
       </div>
 
-      <div className="favSportList3">
+      <div className="favSportList">
         <p>pools</p>
         {
           props.favData.pools && props.favData.pools.map(i => {
@@ -70,7 +69,7 @@ export default function Favorites(props) {
         }
       </div>
 
-      <div className="favSportList3">
+      <div className="favSportList">
         <p>tennis</p>
         {
           props.favData.tennis && props.favData.tennis.map(i => {

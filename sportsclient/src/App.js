@@ -4,11 +4,12 @@ import './App.css';
 
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
+
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites.js';
 import {
-  Form, Input, Tooltip, Icon, Cascader, message, Select, Row, Col, Nav, Checkbox, Button, AutoComplete,Avatar
+  Form, Input, Tooltip, Icon, Cascader, message, Select, Row, Col, Checkbox, Button, AutoComplete,Avatar, Menu,
 } from 'antd';
 
 
@@ -152,7 +153,7 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
       this.setState({currentView: 'login'});
 
     }catch(e){
-      message.error("User already taken");
+      message.error("User taken");
     }
 
 
@@ -311,27 +312,30 @@ async handleSubmitProfile(e){
       <div className="App">
 
 
-      {this.state.currentView=='register' || this.state.currentView=='login' ?<div className='topBar'>
-        <header>  <Button id='register' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('register')}>Register</Button>
-        <Button id='login' icon="login" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('login')}>Login</Button></header>
 
-          <p className='title'>Welcome TO NYC Sports</p>
-           <Typist className="intro">
-          Sign In or Register to find local public courts near you
-        </Typist>
-    </div>:
+      {this.state.currentView=='register' || this.state.currentView=='login' ?   <div> <Menu mode="horizontal" className="menuBar">
+                 <Menu.Item id='register' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('register')}><Icon type="user-add" style={{ fontSize: "30px", color: "orange" }}/>Register</Menu.Item>
+               <Menu.Item id='login' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('login')}><Icon type="login" style={{ fontSize: "30px", color: "orange" }}/>Login</Menu.Item></Menu>
+             <div className="welcomeScreen">   <p className='title'>Welcome TO NYC Sports</p>
+                     <Typist className="intro">
+                    Sign In or Register to find local public courts near you
+                  </Typist></div>
+                </div>
+              :
+         <Menu mode="horizontal" className="menuBar">
+                <Menu.Item id='profile'  style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}><Icon type="user" style={{ fontSize: "30px", color: "orange" }}/>Profile</Menu.Item>
+              <Menu.Item id='LandingPage' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('LandingPage')}><Icon type="team" style={{ fontSize: "30px", color: "orange" }}/>Sports</Menu.Item>
+            <Menu.Item id='favorites' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('favorites')}><Icon type="like" style={{ fontSize: "30px", color: "orange" }}/>Favorites</Menu.Item>
+              <Menu.Item  style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}> <Icon type="signout" style={{ fontSize: "30px", color: "orange" }} />SignOut</Menu.Item></Menu>}
 
-        <div className='topBar'><header> <Button id='profile' icon="user" style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}>Profile</Button>
-        <Button id='LandingPage' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('LandingPage')}>Sports</Button>
-        <Button id='favorites' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('favorites')}>Favorites</Button>
-      <Button icon="logout" id='signOut' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}>SignOut</Button></header></div>}
 
-        <div className='topBar'>
+
+    <div className='topBar'>
+
+
 
         {display}
       </div>
-
-
 
 
     </div>);

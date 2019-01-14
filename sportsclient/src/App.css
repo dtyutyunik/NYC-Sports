@@ -1,10 +1,23 @@
+@import "~antd/dist/antd.css";
 .App {
   /* text-align: center; */
 
 
 }
 
-html{
+.menuBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2%;
+
+}
+
+.welcomeScreen{
+  text-align: center;
+}
+
+body{
 
   /* background: url('./sport-images/nyc2.jpg'); */
   /* background-repeat: no-repeat; */
@@ -101,27 +114,28 @@ opacity: .4;
 }
 
 .favSportAll{
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   display:flex;
 
 
 }
 
 .favSportList{
-  /* border: 1px solid red; */
-  width:50%;
+  border: 1px solid red;
+  box-shadow: 5px 10px 18px #888888;
+  /* width:50%; */
 
 }
 
 .favSportList2{
   /* border: 1px solid yellow; */
 
-  width:50%;
+  /* width:50%; */
 }
 
 .favSportList3{
   border: 1px solid green;
-  width:50%;
+  /* width:50%; */
 
 }
 
