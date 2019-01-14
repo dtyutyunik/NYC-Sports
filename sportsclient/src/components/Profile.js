@@ -57,8 +57,9 @@ const formItemLayout = {
    <Card.Content>
      <Card.Header>Name: {this.props.info.name}</Card.Header>
    <Card.Description>Email: {this.props.info.email} </Card.Description>
- <Card.Description>Sports: {this.props.info.sport_type} </Card.Description>
-<button id='edit' onClick={this.props.changeView}>Edit</button>
+ <Card.Description>Sports: {this.props.info.sport_type}  </Card.Description>
+
+<button type='submit' id='edit' onClick={this.props.changeView}>Edit</button>
  </Card.Content>
 </Card>
 </div>
@@ -79,22 +80,23 @@ const formItemLayout = {
     <Input.TextArea
       rows={4}
       cols={20}
-      // style={{color: "rgba(0,0,0,.25)" }}
+
        placeholder='profile_pic'
        name='profile_pic'
        onChange={this.props.handleEditProfile}
        value={this.props.info.profile_pic}
        >
      </Input.TextArea>
-
+     <Form.Item>
       <CheckboxGroup options={sportData} onChange={this.props.changeSport} />
+    </Form.Item>
 
 
-   <br></br>
      <Button type="primary" htmlType="submit"  >
                   Submit
                 </Button>
    </Form>
+
 
 
 

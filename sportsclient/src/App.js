@@ -209,14 +209,18 @@ handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleSportProfile(e){
 
-    // console.log(name);
     console.log(e);
+
     const newUser = this.state.afterUserLoggedin;
-    newUser.sport_type = e;
+
+    newUser.sport_type = e+ '';
+
+
+
     this.setState({
       afterUserLoggedin: newUser
     })
-    // console.log(checked);
+
   }
 
 handleEditProfile(e){
@@ -229,12 +233,23 @@ handleEditProfile(e){
       }
     }))
 
+
+
 }
 
-async handleSubmitProfile(){
-  // console.log('edit profile clicked');
-  const newUser = this.state.afterUserLoggedin
-  newUser.sport_type = this.state.afterUserLoggedin.sport_type.join(" ");
+async handleSubmitProfile(e){
+   e.preventDefault();
+  console.log(this.state.afterUserLoggedin.sport_type);
+
+  const newUser = this.state.afterUserLoggedin;
+
+
+    if(this.state.afterUserLoggedin.sport_type===null){
+        newUser.sport_type= " ";
+    }else{
+
+    }
+
   this.setState({
     editIt: true,
     afterUserLoggedin: newUser
