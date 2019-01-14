@@ -59,7 +59,7 @@ const formItemLayout = {
    <Card.Description>Email: {this.props.info.email} </Card.Description>
  <Card.Description>Sports: {this.props.info.sport_type}  </Card.Description>
 
-<button type='submit' id='edit' onClick={this.props.changeView}>Edit</button>
+<Button type="primary" htmlType="submit" id='edit' onClick={this.props.changeView}>Edit</Button>
  </Card.Content>
 </Card>
 </div>

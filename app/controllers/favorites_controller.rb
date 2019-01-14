@@ -5,9 +5,6 @@ class FavoritesController < ApplicationController
   # GET /favorites
   def index
 #shows all info of speciifc user
-# @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
-
-# @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
 
 if params.has_key?(:user_id)
     @user= User.find(params[:user_id]).to_json(include: [:pools, :basketballs, :bocces, :crickets, :handballs, :tennis] )
@@ -26,9 +23,7 @@ end
 
     #depending on sport we send it will become sport_id so we can target the right cell
     sportKind="#{params[:sport]}_id"
-    # p sportKind
 
-    #user_id is the userid we send through
     #sportkind is the type of sport and the sportid is the id of the sport that will register on the table
     @favorite=Favorite.new({user_id: params[:user_id], sportKind => params[:sportid]})
     if @favorite.save
@@ -43,15 +38,6 @@ end
   # DELETE /favorites/1
   def destroy
 
-# p params
-# sportKind="#{params[:sport]}_id"
-  # Favorite.find_by user_id: current_user.id, sportKind => params[:sportid]
-# @favorite=params[:user_id]
-# http://localhost:3000/favorites/?user_id=2&sport=basketball&sportid=11
-
-# sportKind="#{params[:sport]}_id"
-
-# render json: params[:user_
     @favorite.destroy
   end
 

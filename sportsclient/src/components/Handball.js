@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input} from 'antd';
+import {Input, Button} from 'antd';
 import {Map, InfoWindow, Marker, DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
 
@@ -112,7 +112,7 @@ class Handball extends Component {
       <h1>Handball</h1>
       <form onSubmit={this.handleSubmit}>
         <label>
-          Enter an address:
+          <span className="address">Enter an address:</span>
           <input type="text" value={this.state.value} onChange={this.handleChange}/>
         </label>
         <input type="submit" value="Submit"/>
@@ -135,8 +135,8 @@ class Handball extends Component {
               </div>
               <div className="sportdetail">
                 <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
-                  <button disabled>Part of Favorite List</button>:
-                  <button id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</button> }</div>
+                  <Button disabled >Part of Favorite List</Button>:
+                  <Button type="primary" id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</Button> }</div>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

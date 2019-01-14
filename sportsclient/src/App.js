@@ -314,8 +314,8 @@ async handleSubmitProfile(e){
 
 
       {this.state.currentView=='register' || this.state.currentView=='login' ?   <div> <Menu mode="horizontal" className="menuBar">
-                 <Menu.Item id='register' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('register')}><Icon type="user-add" style={{ fontSize: "30px", color: "orange" }}/>Register</Menu.Item>
-               <Menu.Item id='login' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('login')}><Icon type="login" style={{ fontSize: "30px", color: "orange" }}/>Login</Menu.Item></Menu>
+                 <Menu.Item id='register' style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('register')}><Icon type="user-add" style={{ fontSize: "30px", color: "EE8033" }}/>Register</Menu.Item>
+               <Menu.Item id='login' style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('login')}><Icon type="login" style={{ fontSize: "30px", color: "EE8033" }}/>Login</Menu.Item></Menu>
              <div className="welcomeScreen">   <p className='title'>Welcome TO NYC Sports</p>
                      <Typist className="intro">
                     Sign In or Register to find local public courts near you
@@ -323,10 +323,10 @@ async handleSubmitProfile(e){
                 </div>
               :
          <Menu mode="horizontal" className="menuBar">
-                <Menu.Item id='profile'  style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('profile')}><Icon type="user" style={{ fontSize: "30px", color: "orange" }}/>Profile</Menu.Item>
-              <Menu.Item id='LandingPage' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('LandingPage')}><Icon type="team" style={{ fontSize: "30px", color: "orange" }}/>Sports</Menu.Item>
-            <Menu.Item id='favorites' style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('favorites')}><Icon type="like" style={{ fontSize: "30px", color: "orange" }}/>Favorites</Menu.Item>
-              <Menu.Item  style={{ fontSize: "30px", color: "orange" }} onClick={() => this.handleView('signOut')}> <Icon type="signout" style={{ fontSize: "30px", color: "orange" }} />SignOut</Menu.Item></Menu>}
+                <Menu.Item id='profile'  style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('profile')}><Icon type="user" style={{ fontSize: "30px", color: "EE8033" }}/>Profile</Menu.Item>
+              <Menu.Item id='LandingPage' style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('LandingPage')}><Icon type="team" style={{ fontSize: "30px", color: "EE8033" }}/>Sports</Menu.Item>
+            <Menu.Item id='favorites' style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('favorites')}><Icon type="like" style={{ fontSize: "30px", color: "EE8033" }}/>Favorites</Menu.Item>
+              <Menu.Item  style={{ fontSize: "30px", color: "#EE8033" }} onClick={() => this.handleView('signOut')}> <Icon type="signout" style={{ fontSize: "30px", color: "EE8033" }} />SignOut</Menu.Item></Menu>}
 
 
 

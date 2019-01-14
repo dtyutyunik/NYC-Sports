@@ -1,7 +1,5 @@
 @import "~antd/dist/antd.css";
 .App {
-  /* text-align: center; */
-
 
 }
 
@@ -10,6 +8,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 2%;
+  background-color: black;
 
 }
 
@@ -19,16 +18,21 @@
 
 body{
 
-  /* background: url('./sport-images/nyc2.jpg'); */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-  /* background-position: center; */
+
 background: #F9E4B7;
 
 }
 
+.address{
+  font-size: 1.5em;
+}
+
+h1{
+  font-size: 2.5em;
+}
+
 .topBar{
-  /* display: flex; */
+
   text-align: center;
   margin-bottom: 5%;
 }
@@ -36,6 +40,7 @@ background: #F9E4B7;
 .sportsContainer{
   display:grid;
   grid-template-columns: repeat(2,1fr);
+  margin-top: 4%;
 }
 
 .formedit{
@@ -51,14 +56,15 @@ img{
     background-color: rgba(255, 255, 255, 0.3);
     width: 40%;
     margin: 0 auto;
-    /* color:black; */
+
     font-size: 1.2em;
 }
 
 .sportsListing{
   margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
-  /* border: 1px solid blue; */
+
   flex-wrap: wrap;
   justify-content: space-evenly;
 
@@ -66,7 +72,7 @@ img{
 }
 .sportType{
 
-  /* border: 2px solid red; */
+
   position: relative;
 
 }
@@ -114,30 +120,35 @@ opacity: .4;
 }
 
 .favSportAll{
-  border: 2px solid blue;
-  display:flex;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 
 
+}
+
+.sportName{
+
+  box-shadow: 5px 10px 18px #888888;
+  font-family: impact;
+  font-size: 2em;
+}
+
+.favSportsBreakdown{
+
+  box-shadow: 5px 5px 5px #888888;
+  margin-bottom: 6%;
 }
 
 .favSportList{
-  border: 1px solid red;
-  box-shadow: 5px 10px 18px #888888;
-  /* width:50%; */
+
+  box-shadow: 5px 10px 18px #FFFFFF;
+
 
 }
 
-.favSportList2{
-  /* border: 1px solid yellow; */
 
-  /* width:50%; */
-}
-
-.favSportList3{
-  border: 1px solid green;
-  /* width:50%; */
-
-}
 
 
 .sportsItem{
