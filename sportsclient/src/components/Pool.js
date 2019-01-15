@@ -97,7 +97,6 @@ class Pool extends Component {
 
     }
     catch(e){
-      // console.log(e);
     }
 
   }
@@ -118,7 +117,7 @@ class Pool extends Component {
           notification[type]({
             message: 'Did you know this court also has:',
             placement: placement,
-            description: `Phone-number of: ${a.phone}. A ${a.typeOfPool} of pool with a dimensions of ${a.size}` 
+            description: `Phone-number of: ${a.phone}. A ${a.typeOfPool} of pool with a dimensions of ${a.size}`
           });
         }
       })
