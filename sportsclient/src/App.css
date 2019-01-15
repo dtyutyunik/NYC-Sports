@@ -1,96 +1,79 @@
 @import "~antd/dist/antd.css";
-.App {
 
-}
+.App {}
 
-.menuBar{
+.menuBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 2%;
   background-color: black;
-
 }
 
-.welcomeScreen{
+.welcomeScreen {
   text-align: center;
 }
 
-body{
-
-
-background: #F9E4B7;
-
+body {
+  background: #F9E4B7;
 }
 
-.address{
+.address {
   font-size: 1.5em;
 }
 
-h1{
+h1 {
   font-size: 2.5em;
 }
 
-.topBar{
-
+.topBar {
   text-align: center;
   margin-bottom: 5%;
 }
 
-.sportsContainer{
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
+.sportsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-top: 4%;
 }
 
-.formedit{
-  border: 1px solid blue;
+.formedit {
 }
 
-img{
+img {
   height: 220px;
   width: 220px;
 }
 
-.profileDisplay{
-    background-color: rgba(255, 255, 255, 0.3);
-    width: 40%;
-    margin: 0 auto;
-
-    font-size: 1.2em;
+.profileDisplay {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 40%;
+  margin: 0 auto;
+  font-size: 1.2em;
 }
 
-.sportsListing{
+.sportsListing {
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
-
   flex-wrap: wrap;
   justify-content: space-evenly;
-
-
 }
-.sportType{
 
-
+.sportType {
   position: relative;
-
 }
 
-.sportType .sportTypeTextContainer{
+.sportType .sportTypeTextContainer {
   display: none;
-
-
 }
 
-
-.sportText{
+.sportText {
   font-size: 1.5em;
   font-family: impact;
-
 }
 
-.sportType:hover .sportTypeTextContainer{
+.sportType:hover .sportTypeTextContainer {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -100,98 +83,70 @@ img{
   align-items: center;
 }
 
-.sportType:hover img{
-opacity: .4;
+.sportType:hover img {
+  opacity: .4;
 }
 
-.surroundingsports{
+.surroundingsports {
   display: flex;
   flex-wrap:
-
 }
 
-.intro{
+.intro {
   font-size: 3em;
 }
 
-.title{
+.title {
   font-size: 4em;
-
 }
 
-.favSportAll{
-
+.favSportAll {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
-
 }
 
-.sportName{
-
+.sportName {
   box-shadow: 5px 10px 18px #888888;
   font-family: impact;
   font-size: 2em;
 }
 
-.favSportsBreakdown{
-
+.favSportsBreakdown {
   box-shadow: 5px 5px 5px #888888;
   margin-bottom: 6%;
 }
 
-.favSportList{
-
+.favSportList {
   box-shadow: 5px 10px 18px #FFFFFF;
-
-
 }
 
-
-
-
-.sportsItem{
-  /* display: flex; */
-  /* flex-wrap: wrap; */
+.sportsItem {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   flex-wrap: wrap;
-
-
+  box-shadow: 5px 10px 18px #888888;
 }
 
-
-.sportdetail{
-  position:relative;
-  /* border: 2px solid green; */
+.sportdetail {
+  position: relative;
   flex: 1;
 }
 
-.sportsList{
-  /* border: 1px solid red; */
+.sportsList {}
 
-}
-
-.mapName{
+.mapName {
   flex: 1;
-  /* border: 2px solid blue; */
   width: 100%;
   height: 100%;
-  position: relative!important;
+  position: relative !important;
 }
 
-.formDesign{
+.formDesign {
   background-color: rgba(255, 255, 255, 0.3);
   width: 40%;
   margin: 0 auto;
-
   font-size: 1.2em;
-
 }
 
-.mapInfo{
-
-
-  /* border: 1px solid blue; */
-}
+.mapInfo {}

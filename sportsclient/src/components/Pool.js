@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Button} from 'antd';
+import {Input, Button,notification} from 'antd';
 import {Map, InfoWindow, Marker, DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
 
@@ -102,7 +102,27 @@ class Pool extends Component {
 
   }
 
+  moreInfo(e,type){
+    console.log(e);
+    let placement;
+    if(e%2===0){
+      placement='topRight'
+    }else{
+      placement='topLeft'
+    }
+    let info;
+    const data=this.props.info.map(a=>{
 
+        if(a.id==e){
+
+          notification[type]({
+            message: 'Did you know this court also has:',
+            placement: placement,
+            description: `Phone-number of: ${a.phone}. A ${a.typeOfPool} of pool with a dimensions of ${a.size}` 
+          });
+        }
+      })
+  }
 
 
   render() {
@@ -138,12 +158,13 @@ class Pool extends Component {
                 <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
                   <Button disabled >Part of Favorite List</Button>:
                   <Button type="primary" id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</Button> }</div>
+<Button  icon="search" type="primary" shape="circle"  id={e.id} name={e.name} onClick={()=>this.moreInfo(e.id,'info')}></Button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>
                 <p>Destination Address:{this.state.searchedAddress}</p>
                 <p>Distance from destination: {this.state.distance[index]}</p>
-                <p>Time from destionation: {this.state.time[index]}</p>
+                <p>Time from destination: {this.state.time[index]}</p>
 
               </div>
 

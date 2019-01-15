@@ -9,8 +9,8 @@ export default function Favorites(props) {
         {
           props.favData.basketballs && props.favData.basketballs.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
             <button onClick={() => props.deleteThis(i.id, 'basketball')}>Remove From Favorites</button>
             </div>)
           })
@@ -22,8 +22,8 @@ export default function Favorites(props) {
         {
           props.favData.bocces && props.favData.bocces.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
               <button onClick={() => props.deleteThis(i.id, 'bocce')}>Remove From Favorites</button>
             </div>)
           })
@@ -35,8 +35,8 @@ export default function Favorites(props) {
         {
           props.favData.crickets && props.favData.crickets.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
               <button onClick={() => props.deleteThis(i.id, 'cricket')}>Remove From Favorites</button>
             </div>)
           })
@@ -48,8 +48,8 @@ export default function Favorites(props) {
         {
           props.favData.handballs && props.favData.handballs.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
               <button onClick={() => props.deleteThis(i.id, 'handball')}>Remove From Favorites</button>
             </div>)
           })
@@ -61,8 +61,8 @@ export default function Favorites(props) {
         {
           props.favData.pools && props.favData.pools.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
               <button onClick={() => props.deleteThis(i.id, 'pool')}>Remove From Favorites</button>
             </div>)
           })
@@ -74,8 +74,8 @@ export default function Favorites(props) {
         {
           props.favData.tennis && props.favData.tennis.map(i => {
             return (<div className="favSportsBreakdown">
-              <p>{i.name}</p>
-              <p>{i.location}</p>
+              <p>Name: {i.name}</p>
+            <p>Location: {i.location}</p>
               <button onClick={() => props.deleteThis(i.id, 'tenni')}>Remove From Favorites</button>
             </div>)
           })

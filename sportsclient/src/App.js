@@ -119,7 +119,7 @@ class App extends Component {
       this.setState({currentView: 'login'});
 
     } catch (e) {
-      message.error("Incorrect Credentials");
+      message.error("Invalid email/password incorrect");
     }
 
 
@@ -256,7 +256,7 @@ class App extends Component {
               }}/>Login</Menu.Item>
               </Menu>
               <div className="welcomeScreen">
-                <p className='title'>Welcome TO NYC Sports</p>
+                <p className='title'>Welcome To NYC Sports</p>
                 <Typist className="intro">
                   Sign In or Register to find local public courts near you
                 </Typist>

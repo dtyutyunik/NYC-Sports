@@ -133,7 +133,7 @@ class Bocce extends Component {
                 <p>Location: {e.location}</p>
                 <p>Destination Address:{this.state.searchedAddress}</p>
                 <p>Distance from destination: {this.state.distance[index]}</p>
-                <p>Time from destionation: {this.state.time[index]}</p>
+                <p>Time from destination: {this.state.time[index]}</p>
 
               </div>
 

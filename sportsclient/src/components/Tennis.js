@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Input, Button} from 'antd';
+import {Input, Button,notification} from 'antd';
 import {Map, InfoWindow, Marker, DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
+
 
 const Search = Input.Search;
 
@@ -17,7 +18,7 @@ class Tennis extends Component {
       searchedAddress: '',
       time: [],
       distance: [],
-      isItFavorite: ''
+      isItFavorite: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,6 +26,7 @@ class Tennis extends Component {
     this.favoriteIt = this.favoriteIt.bind(this);
     this.showLocation = this.showLocation.bind(this);
     this.favoriteCall = this.favoriteCall.bind(this);
+    this.moreInfo = this.moreInfo.bind(this);
 
   }
 
@@ -68,7 +70,7 @@ class Tennis extends Component {
   async favoriteCall(){
     try{
       const data= await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
-      
+
       this.setState({
         isItFavorite: data.data.tennis
       })
@@ -96,6 +98,31 @@ class Tennis extends Component {
     this.favoriteCall();
   }
 
+  moreInfo(e,type){
+    console.log(e);
+    let placement;
+    if(e%2===0){
+      placement='topRight'
+    }else{
+      placement='topLeft'
+    }
+    let info;
+    const data=this.props.info.map(a=>{
+
+        if(a.id==e){
+
+          notification[type]({
+            message: 'Did you know this court also has:',
+            placement: placement,
+            description: `Phone-number of: ${a.phone}. A ${a.typeOfCourt} type of court.
+            It is ${a.indoor_outdoor}s. ` +
+            `${a.info===null?'':a.info}`
+
+          });
+        }
+      })
+  }
+
   render() {
     const {google} = this.props;
 
@@ -113,7 +140,7 @@ class Tennis extends Component {
         {
           this.props.info.map((e, index) => {
             return <div className="sportsItem" key={e.id}>
-              {/* <div className="sportsList"> */}
+
                 <Map className='mapName' google={google} initialCenter={{
                     lat: e.lat,
                     lng: e.long
@@ -123,17 +150,18 @@ class Tennis extends Component {
                       lng: e.long
                     }}/>
                 </Map>
-              {/* </div> */}
+
               <div className="sportdetail">
                 <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
                   <Button disabled >Part of Favorite List</Button>:
                   <Button type="primary" id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</Button> }</div>
+                <Button  icon="search" type="primary" shape="circle"  id={e.id} name={e.name} onClick={()=>this.moreInfo(e.id,'info')}></Button>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>
                 <p>Destination Address:{this.state.searchedAddress}</p>
                 <p>Distance from destination: {this.state.distance[index]}</p>
-                <p>Time from destionation: {this.state.time[index]}</p>
+                <p>Time from destination: {this.state.time[index]}</p>
 
               </div>
 
