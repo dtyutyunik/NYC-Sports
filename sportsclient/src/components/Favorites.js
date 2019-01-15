@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 export default function Favorites(props) {
   return (<div>
@@ -58,7 +58,6 @@ export default function Favorites(props) {
 
       <div className="favSportList">
         {props.favData.pools && props.favData.pools.length<1?null:<p className="sportName">Pool</p>}
-        {console.log(props.favData.pools && props.favData.pools.length)}
         {
           props.favData.pools && props.favData.pools.map(i => {
             return (<div className="favSportsBreakdown">

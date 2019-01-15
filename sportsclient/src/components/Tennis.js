@@ -5,13 +5,6 @@ import axios from 'axios';
 
 const Search = Input.Search;
 
-// const style = {}
-// const style2 = {
-//   width: '20%',
-//   height: '25%',
-//   position: 'absolute',
-//   zindex: '-1'
-// };
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -49,7 +42,7 @@ class Tennis extends Component {
       })
 
     } catch (e) {
-      console.log(e)
+
     }
 
   }
@@ -63,7 +56,7 @@ class Tennis extends Component {
       this.setState({searchedAddress: address})
 
     } catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -75,7 +68,7 @@ class Tennis extends Component {
   async favoriteCall(){
     try{
       const data= await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
-      console.log(data.data)
+      
       this.setState({
         isItFavorite: data.data.tennis
       })

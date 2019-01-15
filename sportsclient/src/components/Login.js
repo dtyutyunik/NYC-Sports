@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Button
 } from 'antd';
 
 

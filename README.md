@@ -16,7 +16,7 @@ Using data from the cityofnewyork.us for locations and informations of all publi
 Handball courts, tennis courts, ice skating rink, indoor swimming pool, beaches, cricket courts and bocce courts
 for each of those will be the data from the json file downloaded from. each of these will be a table of its own
 
-![ERD](ERD.jpg)
+![ERD](ERD.pdf)
 
 # WireFrames
 ![WireFrames](wireframe.jpg)

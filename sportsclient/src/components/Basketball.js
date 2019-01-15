@@ -5,12 +5,6 @@ import axios from 'axios';
 
 const Search = Input.Search;
 
-const style = {
-  width: '20%',
-  height: '25%',
-  position: 'absolute',
-  zindex: '-1'
-};
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 

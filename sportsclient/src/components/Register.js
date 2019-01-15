@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Button
 } from 'antd';
 
 
@@ -29,7 +29,7 @@ export default function Register(props){
   <h5>Password Confirmation</h5>
     <Input
       type="password"
-    
+
       placeholder="renenter pw"
       onChange={props.handleRegisterChange}
       name='password_confirmation'

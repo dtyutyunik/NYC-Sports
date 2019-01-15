@@ -5,13 +5,6 @@ import axios from 'axios';
 
 const Search = Input.Search;
 
-const style = {
-  width: '20%',
-  height: '25%',
-  position: 'absolute',
-  zindex: '-1'
-};
-
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 class Handball extends Component {
@@ -43,8 +36,12 @@ class Handball extends Component {
       const times = data.data.rows[0].elements[0].duration.text;
 
       this.setState({
-        time: [times, ...this.state.time],
-        distance: [distances, ...this.state.distance]
+        time: [
+          times, ...this.state.time
+        ],
+        distance: [
+          distances, ...this.state.distance
+        ]
       })
 
     } catch (e) {
@@ -79,31 +76,29 @@ class Handball extends Component {
   }
 
   async favoriteIt(e) {
-    const data= await axios.post(`/api/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'handball', 'sportid': e});
+    const data = await axios.post(`/api/favorites/`, {
+      'user_id': this.props.userId.id,
+      'sport': 'handball',
+      'sportid': e
+    });
     this.favoriteCall();
-    }
+  }
 
-    componentDidMount(){
-      this.favoriteCall();
-    }
+  componentDidMount() {
+    this.favoriteCall();
+  }
 
+  async favoriteCall() {
+    try {
+      const data = await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
 
+      this.setState({isItFavorite: data.data.handballs})
 
-
-    async favoriteCall(){
-    try{
-      const data= await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
-
-      this.setState({
-        isItFavorite: data.data.handballs
-      })
-
-    }
-    catch(e){
+    } catch (e) {
       // console.log(e);
     }
 
-    }
+  }
 
   render() {
     const {google} = this.props;
@@ -123,7 +118,7 @@ class Handball extends Component {
           this.props.info.map((e, index) => {
             return <div className="sportsItem" key={e.id}>
               <div className="sportsList">
-                <Map className='mapName' google={google}  initialCenter={{
+                <Map className='mapName' google={google} initialCenter={{
                     lat: e.lat,
                     lng: e.long
                   }} zoom={15}>
@@ -134,9 +129,11 @@ class Handball extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
-                  <Button disabled >Part of Favorite List</Button>:
-                  <Button type="primary" id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</Button> }</div>
+                <div>{
+                    this.state.isItFavorite && this.state.isItFavorite.filter(a => a.id == e.id).length > 0
+                      ? <Button disabled="disabled">Part of Favorite List</Button>
+                      : <Button type="primary" id={e.id} name={e.name} onClick={() => this.favoriteIt(e.id)}>Favorite Me</Button>
+                  }</div>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

@@ -3,15 +3,6 @@ import {Input, Button} from 'antd';
 import {Map, InfoWindow, Marker, DistanceMatrixService, GoogleApiWrapper} from 'google-maps-react';
 import axios from 'axios';
 
-const Search = Input.Search;
-
-const style = {
-  width: '20%',
-  height: '25%',
-  position: 'absolute',
-  zindex: '-1'
-};
-
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 class Bocce extends Component {
@@ -43,13 +34,15 @@ class Bocce extends Component {
       const times = data.data.rows[0].elements[0].duration.text;
 
       this.setState({
-        time: [times, ...this.state.time],
-        distance: [distances, ...this.state.distance]
+        time: [
+          times, ...this.state.time
+        ],
+        distance: [
+          distances, ...this.state.distance
+        ]
       })
 
-    } catch (e) {
-      // console.log(e)
-    }
+    } catch (e) {}
 
   }
 
@@ -61,9 +54,7 @@ class Bocce extends Component {
 
       this.setState({searchedAddress: address})
 
-    } catch (e) {
-      // console.log(e)
-    }
+    } catch (e) {}
   }
 
   handleChange(event) {
@@ -79,33 +70,28 @@ class Bocce extends Component {
   }
 
   async favoriteIt(e) {
-    const data= await axios.post(`/api/favorites/`,{'user_id' : this.props.userId.id, 'sport': 'bocce', 'sportid': e});
+    const data = await axios.post(`/api/favorites/`, {
+      'user_id': this.props.userId.id,
+      'sport': 'bocce',
+      'sportid': e
+    });
 
     this.favoriteCall();
-    }
+  }
 
-    componentDidMount(){
-      this.favoriteCall();
-    }
+  componentDidMount() {
+    this.favoriteCall();
+  }
 
+  async favoriteCall() {
+    try {
+      const data = await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
 
+      this.setState({isItFavorite: data.data.bocces})
 
+    } catch (e) {}
 
-    async favoriteCall(){
-    try{
-      const data= await axios.get(`/api/favorites/?user_id=${this.props.userId.id}`);
-
-      this.setState({
-        isItFavorite: data.data.bocces
-      })
-
-    }
-    catch(e){
-      // console.log(e);
-    }
-
-    }
-
+  }
 
   render() {
     const {google} = this.props;
@@ -137,9 +123,11 @@ class Bocce extends Component {
                 </Map>
               </div>
               <div className="sportdetail">
-                <div>{this.state.isItFavorite&&this.state.isItFavorite.filter(a=>a.id ==e.id).length>0?
-                  <Button disabled >Part of Favorite List</Button>:
-                  <Button type="primary" id={e.id} name={e.name} onClick={()=>this.favoriteIt(e.id)}>Favorite Me</Button> }</div>
+                <div>{
+                    this.state.isItFavorite && this.state.isItFavorite.filter(a => a.id === e.id).length > 0
+                      ? <Button disabled="disabled">Part of Favorite List</Button>
+                      : <Button type="primary" id={e.id} name={e.name} onClick={() => this.favoriteIt(e.id)}>Favorite Me</Button>
+                  }</div>
 
                 <p>Name: {e.name}</p>
                 <p>Location: {e.location}</p>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Input} from 'antd';
 import axios from 'axios';
 import Basketball from './Basketball';
 import Handball from './Handball';
@@ -7,9 +6,6 @@ import Tennis from './Tennis';
 import Pool from './Pool';
 import Bocce from './Bocce';
 import Cricket from './Cricket';
-import Profile from './Profile';
-
-import { Tooltip, Button } from 'antd';
 
 export default class LandingPage extends Component {
 
@@ -39,8 +35,6 @@ export default class LandingPage extends Component {
   }
 
   whichSport(e) {
-    console.log(e);
-
     switch (e) {
       case 'basketballs':
         this.setState({view: <Basketball info={this.state.sportData}
@@ -90,38 +84,38 @@ export default class LandingPage extends Component {
           <div className="sportTypeTextContainer">
             <p className="sportText">Basketball</p>
             </div>
-          <img src={require('../sport-images/basketball.png')}/>
+          <img alt="basketball" src={require('../sport-images/basketball.png')}/>
 
       </div>
       <div className="sportType" id="bocces" onClick={this.sportPull}>
         <div className="sportTypeTextContainer">
           <p className="sportText">Bocce</p>
           </div>
-        <img src={require('../sport-images/bocce.png')}/>
+        <img alt="bocce" src={require('../sport-images/bocce.png')}/>
       </div>
       <div className="sportType" id="crickets" onClick={this.sportPull}>
         <div className="sportTypeTextContainer">
           <p className="sportText">Cricket</p>
           </div>
-        <img src={require('../sport-images/cricket.png')}/>
+        <img alt="cricket" src={require('../sport-images/cricket.png')}/>
       </div>
       <div className="sportType" id="handballs" onClick={this.sportPull}>
         <div className="sportTypeTextContainer">
           <p className="sportText">Handball</p>
           </div>
-        <img src={require('../sport-images/handball.jpg')}/>
+        <img alt="handball" src={require('../sport-images/handball.jpg')}/>
       </div>
       <div className="sportType" id="pools" onClick={this.sportPull}>
         <div className="sportTypeTextContainer">
           <p className="sportText">Pool</p>
           </div>
-        <img src={require('../sport-images/swimming.png')}/>
+        <img alt="pools" src={require('../sport-images/swimming.png')}/>
       </div>
       <div className="sportType" id="tennis" onClick={this.sportPull}>
         <div className="sportTypeTextContainer">
           <p className="sportText">Tennis</p>
           </div>
-        <img src={require('../sport-images/tennis.png')}/>
+        <img alt="tennis" src={require('../sport-images/tennis.png')}/>
       </div>
     </div>
 
