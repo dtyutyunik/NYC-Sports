@@ -10,7 +10,7 @@ import {
   Icon,
   message,
   Menu
-} from 'antd';
+} from 'antd';  
 
 import Typist from 'react-typist';
 
