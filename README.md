@@ -2,7 +2,7 @@
 
 # NYC-Sports
 
-Using data from the cityofnewyork.us for locations and informations of all public handball courts, tennis courts, ice skating rink, indoor swimming pool, beaches, cricket courts and bocce courts. We will let the user edit their profile with name and image as well as comment on a sport location and rate it and add to their favorites. Let user filter based on sport and further sort sort by zip code.
+Using data from the https://opendata.cityofnewyork.us/ for locations and informations of all public handball courts, tennis courts, ice skating rink, indoor swimming pool, beaches, cricket courts and bocce courts. Provide the user with the ability to edit their profile with name and image and sports images, as well as let the user add individual sport locations to their favorites. Let user filter based on sport and further sort sort by zip code.
 
 ## Technologies to be used
 * ruby on backend coding to read json files and write to db
